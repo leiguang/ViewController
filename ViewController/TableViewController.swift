@@ -9,18 +9,12 @@
 import UIKit
 
 class TableViewController: UITableViewController {
-
-    // view controller info
-    struct Model {
-        let title: String
-        let className: String
-    }
     
-    let datas: [Model] = [
-        Model(title: "容器视图", className: "ContainerViewController"),
-        Model(title: "在子视图控制器之间切换", className: "TransitionChildsViewController")
+    let datas: [(title: String, className: String)] = [
+        ("容器视图", "ContainerViewController"),
+        ("在子视图控制器之间切换", "TransitionChildsViewController"),
+        ("present模态跳转", "PresentingViewController"),
     ]
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,11 +31,8 @@ class TableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-        
         cell.textLabel?.text = datas[indexPath.row].title
-        cell.detailTextLabel?.text = "detail text label text"
         cell.accessoryType = .disclosureIndicator
-
         return cell
     }
  
@@ -53,4 +44,13 @@ class TableViewController: UITableViewController {
         vc.title = datas[indexPath.row].title
         navigationController?.pushViewController(vc, animated: true)
     }
+    
+    
+    
+    // MARK: - Using segue dismiss
+    // 详见“SeguesViewController.swift” 
+    @IBAction func myUnwindAction(_ unwindSegue: UIStoryboardSegue) {
+        print(#function)
+    }
+    
 }

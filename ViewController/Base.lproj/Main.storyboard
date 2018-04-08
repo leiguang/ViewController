@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -32,11 +33,54 @@
                             <outlet property="delegate" destination="1Aa-Lt-8gu" id="twf-XZ-Z6g"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="tJ8-Sx-Xpn"/>
+                    <navigationItem key="navigationItem" id="tJ8-Sx-Xpn">
+                        <barButtonItem key="rightBarButtonItem" title="Segue" id="nVd-2x-R01">
+                            <connections>
+                                <segue destination="E4Q-8M-Olz" kind="presentation" id="qQ7-uA-1ol"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JAr-Tt-k6E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3031.1999999999998" y="-1042.128935532234"/>
+        </scene>
+        <!--Segues View Controller-->
+        <scene sceneID="01a-xN-fpb">
+            <objects>
+                <viewController id="E4Q-8M-Olz" customClass="SeguesViewController" customModule="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="x1E-y0-oab">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GjW-Vf-cEP">
+                                <rect key="frame" x="87.5" y="293.5" width="200" height="100"/>
+                                <color key="backgroundColor" red="0.38823529410000002" green="0.86666666670000003" blue="0.63137254899999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="Odc-vC-nYD"/>
+                                    <constraint firstAttribute="height" constant="100" id="jOJ-QV-Yc4"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <state key="normal" title="Using segue dismiss">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="YnD-zG-bLP" kind="unwind" unwindAction="myUnwindAction:" id="4cV-m5-uAx"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="GjW-Vf-cEP" firstAttribute="centerX" secondItem="fA7-lW-6Rp" secondAttribute="centerX" id="1q0-nL-ft3"/>
+                            <constraint firstItem="GjW-Vf-cEP" firstAttribute="centerY" secondItem="fA7-lW-6Rp" secondAttribute="centerY" id="s88-9d-hsw"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="fA7-lW-6Rp"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zXB-PE-VVf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="YnD-zG-bLP" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="3758" y="-1042"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PmG-dD-g3K">

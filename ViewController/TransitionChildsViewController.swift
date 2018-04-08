@@ -54,6 +54,8 @@ class TransitionChildsViewController: UIViewController {
             oldVC.removeFromParentViewController()
             newVC.didMove(toParentViewController: self)
 
+            
+            self.navigationItem.rightBarButtonItem?.isEnabled = false 
         }
     }
 }
