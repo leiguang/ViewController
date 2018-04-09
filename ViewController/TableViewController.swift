@@ -14,6 +14,7 @@ class TableViewController: UITableViewController {
         ("容器视图", "ContainerViewController"),
         ("在子视图控制器之间切换", "TransitionChildsViewController"),
         ("present模态跳转", "PresentingViewController"),
+        ("连续present多个viewController", "ContinuousPresentingViewController"),
     ]
     
     override func viewDidLoad() {
