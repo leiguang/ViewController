@@ -8,6 +8,11 @@
 
 // [Presentations and Transitions] -> [Presenting a View Controller]
 
+/**
+ NOTE:
+ When presenting a view controller using the UIModalPresentationFullScreen style, UIKit normally removes the views of the underlying view controller after the transition animations finish. You can prevent the removal of those views by specifying the UIModalPresentationOverFullScreen style instead. You might use that style when the presented view controller has transparent areas that let underlying content show through.
+ */
+
 import UIKit
 
 class PresentingViewController: UIViewController {
