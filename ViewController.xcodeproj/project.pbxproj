@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A055075207D04800037ED2F /* TransitionAnimationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A055074207D04800037ED2F /* TransitionAnimationsViewController.swift */; };
 		9A18CC0C20776091009B0D4E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A18CC0B20776091009B0D4E /* AppDelegate.swift */; };
 		9A18CC1120776091009B0D4E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A18CC0F20776091009B0D4E /* Main.storyboard */; };
 		9A18CC1320776093009B0D4E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A18CC1220776093009B0D4E /* Assets.xcassets */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9A055074207D04800037ED2F /* TransitionAnimationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionAnimationsViewController.swift; sourceTree = "<group>"; };
 		9A18CC0820776091009B0D4E /* ViewController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ViewController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A18CC0B20776091009B0D4E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9A18CC1020776091009B0D4E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -49,6 +51,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9A055073207D045C0037ED2F /* CustomizingTheTransitionAnimations */ = {
+			isa = PBXGroup;
+			children = (
+				9A055074207D04800037ED2F /* TransitionAnimationsViewController.swift */,
+			);
+			path = CustomizingTheTransitionAnimations;
+			sourceTree = "<group>";
+		};
 		9A18CBFF20776091009B0D4E = {
 			isa = PBXGroup;
 			children = (
@@ -74,6 +84,7 @@
 				9A18CC2520792975009B0D4E /* TransitionChildsViewController.swift */,
 				9A18CC28207A46FD009B0D4E /* PresentingAViewController */,
 				9A18CC2D207A6BEB009B0D4E /* SeguesViewController.swift */,
+				9A055073207D045C0037ED2F /* CustomizingTheTransitionAnimations */,
 				9A18CC0F20776091009B0D4E /* Main.storyboard */,
 				9A18CC1220776093009B0D4E /* Assets.xcassets */,
 				9A18CC1420776093009B0D4E /* LaunchScreen.storyboard */,
@@ -180,6 +191,7 @@
 				9A18CC2620792975009B0D4E /* TransitionChildsViewController.swift in Sources */,
 				9A18CC0C20776091009B0D4E /* AppDelegate.swift in Sources */,
 				9A18CC2E207A6BEB009B0D4E /* SeguesViewController.swift in Sources */,
+				9A055075207D04800037ED2F /* TransitionAnimationsViewController.swift in Sources */,
 				9A18CC2A207A4806009B0D4E /* PresentingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
