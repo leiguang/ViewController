@@ -41,6 +41,7 @@
 		9A18CC2B207A483D009B0D4E /* PresentedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentedViewController.swift; sourceTree = "<group>"; };
 		9A18CC2D207A6BEB009B0D4E /* SeguesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeguesViewController.swift; sourceTree = "<group>"; };
 		9A92A666207B06E3000D2011 /* ContinuousPresentingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinuousPresentingViewController.swift; sourceTree = "<group>"; };
+		9A92A668207B070F000D2011 /* ContinuousPresentedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinuousPresentedViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
