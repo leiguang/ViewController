@@ -69,6 +69,7 @@ class PresentingViewController: UIViewController {
         partialCurl.setTitle("partialCurl", for: .normal)
         partialCurl.addTarget(self, action: #selector(tapPartialCurl), for: .touchUpInside)
         view.addSubview(partialCurl)
+        
     }
 
     

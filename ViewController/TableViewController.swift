@@ -11,7 +11,8 @@ import UIKit
 class TableViewController: UITableViewController {
     
     let datas: [(title: String, className: String)] = [
-        ("容器视图", "ContainerViewController"),
+        ("”presented“和“presenting”之间的关系", "PresentRelationshipViewController"),
+        ("实现一个容器视图", "ContainerViewController"),
         ("在子视图控制器之间切换", "TransitionChildsViewController"),
         ("present模态跳转", "PresentingViewController"),
         ("连续present多个viewController", "ContinuousPresentingViewController"),

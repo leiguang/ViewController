@@ -65,7 +65,6 @@ class MyAnimator: NSObject, UIViewControllerAnimatedTransitioning {
             let toView = toVC.view else {
                 
                 fatalError("\(#file) -> \(#function) 无法找到 fromeVC或toVC")
-                return
         }
      
         
@@ -112,8 +111,8 @@ class MyAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         
         // Always add the "to" view to the container.
         // And it doesn't hurt to set its start frame.
-//        containerView.addSubview(toView)
         containerView.addSubview(toView)
+        
         if self.presenting {
             toView.frame = toViewStartFrame
         } else {
