@@ -17,6 +17,7 @@ class TableViewController: UITableViewController {
         ("present模态跳转", "PresentingViewController"),
         ("连续present多个viewController", "ContinuousPresentingViewController"),
         ("自定义转场过渡动画", "TransitionAnimationsViewController"),
+        ("给转场动画添加手势交互", "AddInteractivityToTransitionsViewController"),
     ]
     
     override func viewDidLoad() {

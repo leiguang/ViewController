@@ -10,7 +10,7 @@ import UIKit
 
 class TransitionAnimationsViewController: UIViewController {
 
-    let myTransitioningDelegate = MyTransitioningDelegate()
+    private let myTransitioning = MyTransitioning()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +21,7 @@ class TransitionAnimationsViewController: UIViewController {
     @objc func tapTransition() {
         let vc = PresentedViewController()
 //        vc.modalPresentationStyle = .custom   // 特别注意：如果只使用transitionDelegate而不使用自定义的presentation controller，千万别把这个“modalPresentationStyle”熟悉设置为“custom”，否则动画完成后屏幕一片漆黑，踩过深坑。 The presentation controller is used only when the view controller’s modalPresentationStyle property is set to UIModalPresentationCustom
-        vc.transitioningDelegate = self.myTransitioningDelegate
+        vc.transitioningDelegate = self.myTransitioning
         self.present(vc, animated: true) {
             print("\(#function) completion.")
         }
@@ -29,26 +29,30 @@ class TransitionAnimationsViewController: UIViewController {
 
 }
 
-class MyTransitioningDelegate: NSObject, UIViewControllerTransitioningDelegate {
+fileprivate class MyTransitioning: NSObject, UIViewControllerTransitioningDelegate {
 
+    private lazy var animator = MyAnimator()
+    
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return MyAnimator(presenting: true)
+//        return MyAnimator(presenting: true)
+        return animator
     }
 
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return MyAnimator(presenting: false)
+//        return MyAnimator(presenting: false)
+        return animator
     }
 }
 
 // Figure 10-5 shows a custom presentation and dismissal transition that animates its view diagonally. During a presentation, the presented view starts offscreen and animates diagonally up and to the left until it is visible. During a dismissal, the view reverses its direction and animates down and to the right until it is offscreen once again.
 class MyAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     
-    let presenting: Bool
-    
-    init(presenting: Bool) {
-        self.presenting = presenting
-        super.init()
-    }
+//    let presenting: Bool
+//
+//    init(presenting: Bool) {
+//        self.presenting = presenting
+//        super.init()
+//    }
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 1.0
@@ -78,18 +82,15 @@ class MyAnimator: NSObject, UIViewControllerAnimatedTransitioning {
          但是，不论“present”或“dismiss”情形下，通过“transitionContext.viewController(forKey: ...)都是可以获取到“fromVC”和“toVC”的，并且通过 "fromVC.view"和”toVC.view“ 也能获取到view(不为nil)，因此我觉得可以通过vc.view来获取对应view，然后再添加到containerView上。（虽然文档没说，但网上也看到很多这种做法，应该可行吧。 有待查证）
          
          
-         //            let toView = transitionContext.view(forKey: .to)
-         //            let fromView = transitionContext.view(forKey: .from)
-         
-         // Always add the "to" view to the container.
-         // And it doesn't hurt to set its start frame.
-         containerView.addSubview(toView)
-         toView.frame = toViewStartFrame
+             let toView = transitionContext.view(forKey: .to)
+             let fromView = transitionContext.view(forKey: .from)
          
          */
 
 
         
+        // 在判断 "self.presenting" 时，网上有这种做法是：通过判断 “如果 fromVC.presentedViewController == toVC“ 或 ”toVC.presentingViewController == fromVC“，则是”presenting"。   这样在”MyTransitioningDelegate“中就只用创建一个”MyAnimator“对象了。
+        let presenting = (fromVC.presentedViewController == toVC)
         
         // Set up some variables for the animation.
         let containerFrame = containerView.frame
@@ -97,8 +98,9 @@ class MyAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         let toViewFinalFrame = transitionContext.finalFrame(for: toVC)      // 文档中这部分真的坑，dismiss时这个值为空
         var fromViewFinalFrame = transitionContext.finalFrame(for: fromVC)
         
+        
         // Set up the animation parameters.
-        if self.presenting {
+        if presenting {
             // Modify the frame of the presented view so that it starts offscreen at the lower-right corner of the container.
             toViewStartFrame.origin.x = containerFrame.size.width
             toViewStartFrame.origin.y = containerFrame.size.height
@@ -114,9 +116,8 @@ class MyAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         containerView.addSubview(toView)
         
         
-        // 在判断 "self.presenting" 时，网上有这种做法是：通过判断 “如果 fromVC.presentedViewController == toVC“ 或 ”toVC.presentingViewController == fromVC“，则是”presenting"。   这样在”MyTransitioningDelegate“中就只用创建一个”MyAnimator“对象了。
         
-        if self.presenting {
+        if presenting {
             toView.frame = toViewStartFrame
 //            containerView.insertSubview(toView, aboveSubview: fromView)   // present时默认就toView在fromView上面，可以按需交换位置
         } else {
@@ -129,7 +130,7 @@ class MyAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         // Animate using the animator's own duration value.
         UIView.animate(withDuration: self.transitionDuration(using: transitionContext), animations: {
             
-            if self.presenting {
+            if presenting {
                 // Move the presented view into position.
                 toView.frame = toViewFinalFrame
                 
@@ -143,7 +144,7 @@ class MyAnimator: NSObject, UIViewControllerAnimatedTransitioning {
             let cancelled = transitionContext.transitionWasCancelled
             
             // 文档中的这句示例代码 有问题(成功dismissal时不应该移除toView)
-            // After a failed presentation or failed dismissal, remove the view.
+            // After a failed presentation or failed dismissal, remove the view. (可交互的时候会发生)
             if cancelled {
                 toView.removeFromSuperview()
             }
