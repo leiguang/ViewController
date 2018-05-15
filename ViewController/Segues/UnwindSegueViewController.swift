@@ -40,7 +40,7 @@ class SeguesViewController: UIViewController {
      “1. Choose the view controller that should appear onscreen at the end of an unwind segue.
      2. Define an unwind action method on the view controller you chose.”
      
-     写在 "the end of an unwind segue" 所在的ViewController中。 因此本例需要写在“TableViewController”中。 否则写错地方一脸懵逼。
+     写在 "the end of an unwind segue" 所在的ViewController中。 因此本例需要写在“SeguesViewController”中。 否则写错地方一脸懵逼。
      
      
      @IBAction func myUnwindAction(_ unwindSegue: UIStoryboardSegue) {
@@ -48,5 +48,12 @@ class SeguesViewController: UIViewController {
      }
  
  */
+    
+    
+    // MARK: - Using segue dismiss
+    // 详见“SeguesViewController.swift”
+    @IBAction func myUnwindAction(_ unwindSegue: UIStoryboardSegue) {
+        print(#function)
+    }
   
 }

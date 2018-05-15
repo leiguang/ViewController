@@ -20,7 +20,7 @@ class TransitionAnimationsViewController: UIViewController {
 
     @objc func tapTransition() {
         let vc = PresentedViewController()
-//        vc.modalPresentationStyle = .custom   // 特别注意：如果只使用transitionDelegate而不使用自定义的presentation controller，千万别把这个“modalPresentationStyle”熟悉设置为“custom”，否则动画完成后屏幕一片漆黑，踩过深坑。 The presentation controller is used only when the view controller’s modalPresentationStyle property is set to UIModalPresentationCustom
+        //        vc.modalPresentationStyle = .custom      // 特别注意: 只有使用自定义的“PresentationController”时，才需要设置“modalPresentationStyle = .custom”。  The presentation controller is used only when the view controller’s modalPresentationStyle property is set to UIModalPresentationCustom
         vc.transitioningDelegate = self.myTransitioning
         self.present(vc, animated: true) {
             print("\(#function) completion.")
@@ -113,22 +113,18 @@ class MyAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         
         // Always add the "to" view to the container.
         // And it doesn't hurt to set its start frame.
-        containerView.addSubview(toView)
-        
-        
-        
         if presenting {
             toView.frame = toViewStartFrame
-//            containerView.insertSubview(toView, aboveSubview: fromView)   // present时默认就toView在fromView上面，可以按需交换位置
+            containerView.insertSubview(toView, aboveSubview: fromView)   // present时需要把toView放在fromView上面（可以按需交换位置）
         } else {
             toView.frame = containerFrame
             containerView.insertSubview(fromView, aboveSubview: toView)     // 需要手动把toView放到fromView下面，否则fromView在下面被挡住了看不见移出效果
         }
         
         
-        
         // Animate using the animator's own duration value.
-        UIView.animate(withDuration: self.transitionDuration(using: transitionContext), animations: {
+        // 注意：在做手势交互动画时，因为默认是".curveEaseInOut"，如果要使计算的手势偏移量和实际动画的偏移量相同，则需要在这儿把动画设置为匀速线性的“.curveLinear”类型。
+        UIView.animate(withDuration: self.transitionDuration(using: transitionContext), delay: 0, options: .curveLinear, animations: {
             
             if presenting {
                 // Move the presented view into position.
@@ -139,13 +135,15 @@ class MyAnimator: NSObject, UIViewControllerAnimatedTransitioning {
                 fromView.frame = fromViewFinalFrame
             }
             
+
         }) { (finished) in
             
             let cancelled = transitionContext.transitionWasCancelled
             
             // 文档中的这句示例代码 有问题(成功dismissal时不应该移除toView)
             // After a failed presentation or failed dismissal, remove the view. (可交互的时候会发生)
-            if cancelled {
+            // 注意：发现，在可交互的dismiss情境下，如果cancell，也不应该把"toView.removeFromview"，否则底部的toView就变成一片漆黑。
+            if presenting && cancelled {
                 toView.removeFromSuperview()
             }
             
