@@ -19,7 +19,7 @@
 		9A18CC2A207A4806009B0D4E /* PresentingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A18CC29207A4806009B0D4E /* PresentingViewController.swift */; };
 		9A18CC2C207A483D009B0D4E /* PresentedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A18CC2B207A483D009B0D4E /* PresentedViewController.swift */; };
 		9A18CC2E207A6BEB009B0D4E /* UnwindSegueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A18CC2D207A6BEB009B0D4E /* UnwindSegueViewController.swift */; };
-		9A384CDE2083483E00C6F12A /* MyPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A384CDD2083483E00C6F12A /* MyPresentationController.swift */; };
+		9A351D1420AAD93D00669554 /* MyPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A351D1320AAD93D00669554 /* MyPresentationController.swift */; };
 		9A6B1510207EEE2300113D1B /* AddInteractivityToTransitionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B150F207EEE2300113D1B /* AddInteractivityToTransitionsViewController.swift */; };
 		9A84EB60207DDDE30089B2B4 /* PresentRelationshipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A84EB5F207DDDE30089B2B4 /* PresentRelationshipViewController.swift */; };
 		9A92A667207B06E3000D2011 /* ContinuousPresentingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A92A666207B06E3000D2011 /* ContinuousPresentingViewController.swift */; };
@@ -41,7 +41,7 @@
 		9A18CC29207A4806009B0D4E /* PresentingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentingViewController.swift; sourceTree = "<group>"; };
 		9A18CC2B207A483D009B0D4E /* PresentedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentedViewController.swift; sourceTree = "<group>"; };
 		9A18CC2D207A6BEB009B0D4E /* UnwindSegueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnwindSegueViewController.swift; sourceTree = "<group>"; };
-		9A384CDD2083483E00C6F12A /* MyPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPresentationController.swift; sourceTree = "<group>"; };
+		9A351D1320AAD93D00669554 /* MyPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPresentationController.swift; sourceTree = "<group>"; };
 		9A6B150F207EEE2300113D1B /* AddInteractivityToTransitionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInteractivityToTransitionsViewController.swift; sourceTree = "<group>"; };
 		9A84EB5F207DDDE30089B2B4 /* PresentRelationshipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentRelationshipViewController.swift; sourceTree = "<group>"; };
 		9A92A666207B06E3000D2011 /* ContinuousPresentingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinuousPresentingViewController.swift; sourceTree = "<group>"; };
@@ -64,8 +64,8 @@
 			children = (
 				9A055074207D04800037ED2F /* TransitionAnimationsViewController.swift */,
 				9A6B150F207EEE2300113D1B /* AddInteractivityToTransitionsViewController.swift */,
+				9A351D1320AAD93D00669554 /* MyPresentationController.swift */,
 				9A351D1220AABBD100669554 /* Side Menu */,
-				9A384CDD2083483E00C6F12A /* MyPresentationController.swift */,
 			);
 			path = "Customizing the Transition Animations";
 			sourceTree = "<group>";
@@ -227,6 +227,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A351D1420AAD93D00669554 /* MyPresentationController.swift in Sources */,
 				9A18CC202079034B009B0D4E /* ChildViewController1.swift in Sources */,
 				9A18CC2C207A483D009B0D4E /* PresentedViewController.swift in Sources */,
 				9A18CC1E20790297009B0D4E /* ContainerViewController.swift in Sources */,
@@ -237,7 +238,6 @@
 				9A6B1510207EEE2300113D1B /* AddInteractivityToTransitionsViewController.swift in Sources */,
 				9A18CC0C20776091009B0D4E /* AppDelegate.swift in Sources */,
 				9A18CC2E207A6BEB009B0D4E /* UnwindSegueViewController.swift in Sources */,
-				9A384CDE2083483E00C6F12A /* MyPresentationController.swift in Sources */,
 				9A055075207D04800037ED2F /* TransitionAnimationsViewController.swift in Sources */,
 				9A92A667207B06E3000D2011 /* ContinuousPresentingViewController.swift in Sources */,
 				9A18CC2A207A4806009B0D4E /* PresentingViewController.swift in Sources */,

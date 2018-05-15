@@ -29,7 +29,7 @@
 
 import UIKit
 
-class SeguesViewController: UIViewController {
+class UnwindSegueViewController: UIViewController {
     
 /**
      
