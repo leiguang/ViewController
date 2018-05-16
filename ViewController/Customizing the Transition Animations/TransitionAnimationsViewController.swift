@@ -104,7 +104,7 @@ class MyAnimator: NSObject, UIViewControllerAnimatedTransitioning {
             // Modify the frame of the presented view so that it starts offscreen at the lower-right corner of the container.
             toViewStartFrame.origin.x = containerFrame.size.width
             toViewStartFrame.origin.y = containerFrame.size.height
-            
+            toViewStartFrame.size = containerFrame.size
         } else {
             // Modify the frame of the dismissed view so it ends in the lower-right corner of the container view.
             fromViewFinalFrame = CGRect(x: containerFrame.size.width, y: containerFrame.size.height, width: toView.frame.size.width, height: toView.frame.size.height)

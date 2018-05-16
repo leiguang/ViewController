@@ -204,7 +204,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="给转场动画添加手势交互" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Gzl-u4-UyI">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="侧边栏" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Gzl-u4-UyI">
                                                     <rect key="frame" x="16" y="0.0" width="324" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -213,6 +213,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="cD5-QV-Xmn" kind="show" id="Fsa-XS-vEa"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -420,20 +423,93 @@
             </objects>
             <point key="canvasLocation" x="4673" y="-701"/>
         </scene>
-        <!--View Controller-->
+        <!--侧边栏-->
         <scene sceneID="dve-g6-8mi">
             <objects>
-                <viewController id="cD5-QV-Xmn" sceneMemberID="viewController">
+                <viewController id="cD5-QV-Xmn" customClass="SideMenuMainViewController" customModule="ViewController" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lb5-UG-Y4f">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0fP-r3-eDT">
+                                <rect key="frame" x="47.5" y="122" width="280" height="100"/>
+                                <color key="backgroundColor" red="1" green="0.98039215690000003" blue="0.01176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="Z4P-Ys-sHf"/>
+                                    <constraint firstAttribute="width" constant="280" id="Zve-Ws-YPN"/>
+                                </constraints>
+                                <state key="normal" title="Present Side Menu ViewController"/>
+                                <connections>
+                                    <action selector="presentSideMenuViewController:" destination="cD5-QV-Xmn" eventType="touchUpInside" id="lkW-b2-26C"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="0fP-r3-eDT" firstAttribute="centerY" secondItem="d3s-cp-JLD" secondAttribute="centerY" id="lyq-nj-M0E"/>
+                            <constraint firstItem="0fP-r3-eDT" firstAttribute="centerX" secondItem="d3s-cp-JLD" secondAttribute="centerX" id="yom-QC-mJo"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="d3s-cp-JLD"/>
                     </view>
+                    <navigationItem key="navigationItem" title="侧边栏" id="Nrj-7e-4nG"/>
+                    <size key="freeformSize" width="375" height="300"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3lc-Jy-S0l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4471" y="310"/>
+            <point key="canvasLocation" x="3945" y="40"/>
+        </scene>
+        <!--Side Menu View Controller-->
+        <scene sceneID="U7h-po-CwL">
+            <objects>
+                <viewController storyboardIdentifier="SideMenuViewController" id="yF4-9B-kFt" customClass="SideMenuViewController" customModule="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sqq-Qc-EdM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ijE-bV-Aic">
+                                <rect key="frame" x="0.0" y="100" width="375" height="148"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OZ8-1f-Y6c">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                        <color key="backgroundColor" red="0.81339205352715083" green="0.8830270500560049" blue="0.97680455450000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="dKf-HD-RvP"/>
+                                        </constraints>
+                                        <state key="normal" title="皆非"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3C2-M4-SCe">
+                                        <rect key="frame" x="0.0" y="52" width="375" height="44"/>
+                                        <color key="backgroundColor" red="0.81339205349999999" green="0.88302705010000004" blue="0.97680455450000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="凉风有信"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3if-Hi-rnC">
+                                        <rect key="frame" x="0.0" y="104" width="375" height="44"/>
+                                        <color key="backgroundColor" red="0.81339205349999999" green="0.88302705010000004" blue="0.97680455450000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="爱是一阵风"/>
+                                        <connections>
+                                            <action selector="dismiss:" destination="yF4-9B-kFt" eventType="touchUpInside" id="EMZ-DF-XLb"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="3C2-M4-SCe" firstAttribute="height" secondItem="OZ8-1f-Y6c" secondAttribute="height" id="1K7-ca-qNZ"/>
+                                    <constraint firstItem="3if-Hi-rnC" firstAttribute="height" secondItem="3C2-M4-SCe" secondAttribute="height" id="Kuw-Mt-L4G"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ijE-bV-Aic" firstAttribute="top" secondItem="taN-cD-p33" secondAttribute="top" constant="100" id="WfO-bF-A4X"/>
+                            <constraint firstItem="ijE-bV-Aic" firstAttribute="leading" secondItem="taN-cD-p33" secondAttribute="leading" id="jFn-cT-WGh"/>
+                            <constraint firstItem="taN-cD-p33" firstAttribute="trailing" secondItem="ijE-bV-Aic" secondAttribute="trailing" id="uxa-rC-XdC"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="taN-cD-p33"/>
+                    </view>
+                    <size key="freeformSize" width="375" height="300"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sNf-SR-moM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4637.6000000000004" y="39.580209895052477"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PmG-dD-g3K">

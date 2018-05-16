@@ -50,8 +50,8 @@ class AddInteractivityToTransitionsViewController: UIViewController {
             
         } else if gesture.state == .changed {
             if translation.y < 0 {
-                let percent = fabs(translation.y / view.bounds.height)
-                self.myTransitioning.interactiveTransitioning.update(percent)
+                let percentage = fabs(translation.y / view.bounds.height)
+                self.myTransitioning.interactiveTransitioning.update(percentage)
             } else {
                 self.myTransitioning.interactiveTransitioning.update(0)
             }
