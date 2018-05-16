@@ -14,6 +14,8 @@ class SideMenuMainViewController: UIViewController {
     
     var edgeGesture: UIScreenEdgePanGestureRecognizer!
     
+    var menuViewController: SideMenuViewController!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,6 +24,10 @@ class SideMenuMainViewController: UIViewController {
         edgeGesture = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(panPresentSideMenuViewController))
         edgeGesture.edges = .left
         self.view.addGestureRecognizer(edgeGesture)
+        
+        menuViewController = storyboard!.instantiateViewController(withIdentifier: "SideMenuViewController") as! SideMenuViewController
+        menuViewController.modalPresentationStyle = .custom
+        menuViewController.transitioningDelegate = self.sideMenuTransitioning
     }
     
     deinit {
@@ -29,23 +35,18 @@ class SideMenuMainViewController: UIViewController {
     }
     
     @IBAction func presentSideMenuViewController(_ sender: Any) {
-        guard let vc = storyboard?.instantiateViewController(withIdentifier: "SideMenuViewController") as? SideMenuViewController else { return }
-        vc.modalPresentationStyle = .custom
-        vc.transitioningDelegate = self.sideMenuTransitioning
-        self.present(vc, animated: true, completion: nil)
         
-//        if case edgeGesture.state = UIGestureRecognizerState.possible {
-//            self.sideMenuTransitioning.interactiveTransitioning.update(1)
-//            self.sideMenuTransitioning.interactiveTransitioning.finish()
-//        }
+        self.present(menuViewController, animated: true, completion: nil)
+        
     }
     
     @objc func panPresentSideMenuViewController(_ pan: UIScreenEdgePanGestureRecognizer) {
-        if case .began = pan.state {
-            self.presentSideMenuViewController(UIButton())
-        }
         
         self.sideMenuTransitioning.interactiveTransitioning.panPresentSideMenuViewController(pan, inView: self.view)
+        
+        if case .began = pan.state {
+            self.present(menuViewController, animated: true, completion: nil)
+        }
         
 //        let offsetX = pan.translation(in: self.view).x
 //
