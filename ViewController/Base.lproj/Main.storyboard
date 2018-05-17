@@ -432,7 +432,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0fP-r3-eDT">
-                                <rect key="frame" x="47.5" y="122" width="280" height="100"/>
+                                <rect key="frame" x="47" y="144" width="280" height="100"/>
                                 <color key="backgroundColor" red="1" green="0.98039215690000003" blue="0.01176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="Z4P-Ys-sHf"/>
@@ -446,7 +446,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="0fP-r3-eDT" firstAttribute="centerY" secondItem="d3s-cp-JLD" secondAttribute="centerY" id="lyq-nj-M0E"/>
+                            <constraint firstItem="0fP-r3-eDT" firstAttribute="top" secondItem="d3s-cp-JLD" secondAttribute="top" constant="100" id="fgu-SQ-iKD"/>
                             <constraint firstItem="0fP-r3-eDT" firstAttribute="centerX" secondItem="d3s-cp-JLD" secondAttribute="centerX" id="yom-QC-mJo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="d3s-cp-JLD"/>

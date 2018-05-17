@@ -25,7 +25,7 @@
 		9A351D1A20ABE33A00669554 /* SideMenuDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A351D1920ABE33A00669554 /* SideMenuDetailViewController.swift */; };
 		9A6B1510207EEE2300113D1B /* AddInteractivityToTransitionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B150F207EEE2300113D1B /* AddInteractivityToTransitionsViewController.swift */; };
 		9A8445F520AC7E6900B508DB /* SideMenuPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8445F420AC7E6900B508DB /* SideMenuPresentationController.swift */; };
-		9A8445F720AC7E9000B508DB /* SideMenuDrivenInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8445F620AC7E9000B508DB /* SideMenuDrivenInteractiveTransition.swift */; };
+		9A8445F720AC7E9000B508DB /* SideMenuInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8445F620AC7E9000B508DB /* SideMenuInteractiveTransition.swift */; };
 		9A8445F920AC7EAA00B508DB /* SideMenuAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8445F820AC7EAA00B508DB /* SideMenuAnimator.swift */; };
 		9A8445FB20AC7EC500B508DB /* SideMenuTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8445FA20AC7EC500B508DB /* SideMenuTransitioning.swift */; };
 		9A84EB60207DDDE30089B2B4 /* PresentRelationshipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A84EB5F207DDDE30089B2B4 /* PresentRelationshipViewController.swift */; };
@@ -54,7 +54,7 @@
 		9A351D1920ABE33A00669554 /* SideMenuDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuDetailViewController.swift; sourceTree = "<group>"; };
 		9A6B150F207EEE2300113D1B /* AddInteractivityToTransitionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInteractivityToTransitionsViewController.swift; sourceTree = "<group>"; };
 		9A8445F420AC7E6900B508DB /* SideMenuPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuPresentationController.swift; sourceTree = "<group>"; };
-		9A8445F620AC7E9000B508DB /* SideMenuDrivenInteractiveTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuDrivenInteractiveTransition.swift; sourceTree = "<group>"; };
+		9A8445F620AC7E9000B508DB /* SideMenuInteractiveTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuInteractiveTransition.swift; sourceTree = "<group>"; };
 		9A8445F820AC7EAA00B508DB /* SideMenuAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuAnimator.swift; sourceTree = "<group>"; };
 		9A8445FA20AC7EC500B508DB /* SideMenuTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTransitioning.swift; sourceTree = "<group>"; };
 		9A84EB5F207DDDE30089B2B4 /* PresentRelationshipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentRelationshipViewController.swift; sourceTree = "<group>"; };
@@ -162,7 +162,7 @@
 				9A351D1920ABE33A00669554 /* SideMenuDetailViewController.swift */,
 				9A8445FA20AC7EC500B508DB /* SideMenuTransitioning.swift */,
 				9A8445F820AC7EAA00B508DB /* SideMenuAnimator.swift */,
-				9A8445F620AC7E9000B508DB /* SideMenuDrivenInteractiveTransition.swift */,
+				9A8445F620AC7E9000B508DB /* SideMenuInteractiveTransition.swift */,
 				9A8445F420AC7E6900B508DB /* SideMenuPresentationController.swift */,
 			);
 			path = "Side Menu";
@@ -250,7 +250,7 @@
 			files = (
 				9A351D1820ABE32400669554 /* SideMenuViewController.swift in Sources */,
 				9A351D1420AAD93D00669554 /* MyPresentationController.swift in Sources */,
-				9A8445F720AC7E9000B508DB /* SideMenuDrivenInteractiveTransition.swift in Sources */,
+				9A8445F720AC7E9000B508DB /* SideMenuInteractiveTransition.swift in Sources */,
 				9A18CC202079034B009B0D4E /* ChildViewController1.swift in Sources */,
 				9A18CC2C207A483D009B0D4E /* PresentedViewController.swift in Sources */,
 				9A18CC1E20790297009B0D4E /* ContainerViewController.swift in Sources */,
@@ -413,7 +413,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8Y83DYJ394;
+				DEVELOPMENT_TEAM = DR5K5LQ4UE;
 				INFOPLIST_FILE = ViewController/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -431,7 +431,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8Y83DYJ394;
+				DEVELOPMENT_TEAM = DR5K5LQ4UE;
 				INFOPLIST_FILE = ViewController/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

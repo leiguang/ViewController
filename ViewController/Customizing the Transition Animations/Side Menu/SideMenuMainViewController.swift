@@ -21,7 +21,9 @@ class SideMenuMainViewController: UIViewController {
         
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         
-        edgeGesture = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(panPresentSideMenuViewController))
+        
+        
+        edgeGesture = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(panToPresent))
         edgeGesture.edges = .left
         self.view.addGestureRecognizer(edgeGesture)
         
@@ -40,40 +42,10 @@ class SideMenuMainViewController: UIViewController {
         
     }
     
-    @objc func panPresentSideMenuViewController(_ pan: UIScreenEdgePanGestureRecognizer) {
+    @objc func panToPresent(_ pan: UIScreenEdgePanGestureRecognizer) {
         
-        self.sideMenuTransitioning.interactiveTransitioning.panPresentSideMenuViewController(pan, inView: self.view)
-        
-        if case .began = pan.state {
-            self.present(menuViewController, animated: true, completion: nil)
-        }
-        
-//        let offsetX = pan.translation(in: self.view).x
-//
-//        print(pan.velocity(in: self.view))
-//
-//        switch pan.state {
-//        case .possible:
-//            break
-//        case .began:
-//            pan.setTranslation(.zero, in: self.view)
-//            self.presentSideMenuViewController(UIButton())
-//        case .changed:
-//            if offsetX > 0 {
-//                let percentage = fabs(offsetX / view.bounds.height)
-//                self.sideMenuTransitioning.interactiveTransitioning.update(percentage)
-//            } else {
-//                self.sideMenuTransitioning.interactiveTransitioning.update(0)
-//            }
-//        case .ended:
-//            if offsetX > 100 {
-//                self.sideMenuTransitioning.interactiveTransitioning.finish()
-//            } else {
-//                self.sideMenuTransitioning.interactiveTransitioning.cancel()
-//            }
-//        case .cancelled, .failed:
-//            self.sideMenuTransitioning.interactiveTransitioning.cancel()
-//        }
+        self.sideMenuTransitioning.interactiveTransition.panToPresent(presenting: self, presented: menuViewController, pan: pan)
+
     }
 }
 

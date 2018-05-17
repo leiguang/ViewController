@@ -10,9 +10,10 @@ import UIKit
 
 class SideMenuTransitioning: NSObject, UIViewControllerTransitioningDelegate {
     
+//    lazy var presentAnimator = SideMenuPresentAnimator()
+//    lazy var dismissAnimator = SideMenuDismissAnimator()
     lazy var animator = SideMenuAnimator()
-    lazy var interactiveTransitioning = SideMenuDrivenInteractiveTransition()
-    var presentationController: SideMenuPresentationController?
+    lazy var interactiveTransition = SideMenuInteractiveTransition()
     
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return animator
@@ -23,18 +24,15 @@ class SideMenuTransitioning: NSObject, UIViewControllerTransitioningDelegate {
     }
     
     func interactionControllerForPresentation(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-        return interactiveTransitioning.isInteracting ? interactiveTransitioning : nil
+        return interactiveTransition.isInteracting ? interactiveTransition : nil
     }
     
     func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-        return interactiveTransitioning.isInteracting ? interactiveTransitioning : nil
+        return interactiveTransition.isInteracting ? interactiveTransition : nil
     }
     
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-        if self.presentationController == nil {
-            self.presentationController = SideMenuPresentationController(presentedViewController: presented, presenting: presenting)
-        }
-        return self.presentationController
+        return SideMenuPresentationController(presentedViewController: presented, presenting: presenting)
     }
     
     override init() {

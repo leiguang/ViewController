@@ -14,8 +14,7 @@ class SideMenuPresentationController: UIPresentationController {
     
     override init(presentedViewController: UIViewController, presenting presentingViewController: UIViewController?) {
         self.dimmingView = UIView()
-        //        self.dimmingView.backgroundColor = UIColor(white: 0, alpha: 0.3)
-        dimmingView.backgroundColor = .red
+        self.dimmingView.backgroundColor = UIColor(white: 0, alpha: 0.3)
         self.dimmingView.alpha = 0.0
         
         super.init(presentedViewController: presentedViewController, presenting: presentingViewController)
@@ -31,7 +30,7 @@ class SideMenuPresentationController: UIPresentationController {
     }
     
     @objc private func tapDimmingView(_ gesture: UITapGestureRecognizer) {
-        self.presentedViewController.dismiss(animated: true, completion: nil)
+        self.presentingViewController.dismiss(animated: true, completion: nil)
     }
     
     override var frameOfPresentedViewInContainerView: CGRect {
@@ -39,6 +38,7 @@ class SideMenuPresentationController: UIPresentationController {
         let presentedFrame = CGRect(x: 0, y: 0, width: kSideMenuWidth, height: containerSize.height)
         return presentedFrame
     }
+    
     
     override func presentationTransitionWillBegin() {
         guard let containerView = self.containerView else { return }
@@ -61,7 +61,7 @@ class SideMenuPresentationController: UIPresentationController {
                 self.dimmingView.alpha = 0.0
             }, completion: nil)
         } else {
-            self.dimmingView.alpha = 0
+            self.dimmingView.alpha = 0.0
         }
     }
     
