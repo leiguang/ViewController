@@ -21,15 +21,13 @@ class SideMenuPresentationController: UIPresentationController {
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapDimmingView))
         self.dimmingView.addGestureRecognizer(tapGesture)
-        
-        print("\(self) init")
     }
     
     deinit {
         print("\(self) deinit")
     }
     
-    @objc private func tapDimmingView(_ gesture: UITapGestureRecognizer) {
+    @objc private func tapDimmingView(_ tap: UITapGestureRecognizer) {
         self.presentingViewController.dismiss(animated: true, completion: nil)
     }
     

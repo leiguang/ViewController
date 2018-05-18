@@ -8,33 +8,40 @@
 
 import UIKit
 
-class SideMenuMainViewController: UIViewController {
+class SideMenuMainViewController: UIViewController, SideMenuDelegate {
 
     let sideMenuTransitioning = SideMenuTransitioning()
     
     var edgeGesture: UIScreenEdgePanGestureRecognizer!
     
     var menuViewController: SideMenuViewController!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         
         
+        addPanGestureOfPresent()
         
-        edgeGesture = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(panToPresent))
-        edgeGesture.edges = .left
-        self.view.addGestureRecognizer(edgeGesture)
         
         menuViewController = storyboard!.instantiateViewController(withIdentifier: "SideMenuViewController") as! SideMenuViewController
         menuViewController.modalPresentationStyle = .custom
         menuViewController.transitioningDelegate = self.sideMenuTransitioning
+        menuViewController.delegate = self
     }
-    
+   
     deinit {
         print("\(self) deinit")
     }
+    
+    @IBAction func push(_ sender: Any) {
+        let vc = SideMenuDetailViewController()
+        vc.title = "Push"
+        show(vc, sender: nil)
+    }
+    
     
     @IBAction func presentSideMenuViewController(_ sender: Any) {
         
@@ -46,6 +53,22 @@ class SideMenuMainViewController: UIViewController {
         
         self.sideMenuTransitioning.interactiveTransition.panToPresent(presenting: self, presented: menuViewController, pan: pan)
 
+    }
+    
+    // MARK: - SideMenuDelegate
+    func push(_ vc: UIViewController) {
+        self.show(vc, sender: nil)
+    }
+    
+    func wirePanToDismissGestureInView(_ view: UIView) {
+        
+    }
+    
+    //
+    func addPanGestureOfPresent() {
+        edgeGesture = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(panToPresent))
+        edgeGesture.edges = .left
+        self.view.addGestureRecognizer(edgeGesture)
     }
 }
 

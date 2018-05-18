@@ -220,7 +220,7 @@ class SideMenuAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 //            }
             transitionContext.completeTransition(!cancelled)
 
-            // 最后一步：恢复 presentingView 到原来的视图结构里。在 FullScreen 模式下，UIKit 会自动做这件事，可以省去这一步。
+            // 最后一步：恢复 presentingView 到原来的视图结构里。(如果是在 FullScreen 模式下，UIKit 会自动做这件事，可以省去这一步。)
             if presenting && cancelled {
                 self.presentingSuperview?.addSubview(fromView)
             }

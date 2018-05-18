@@ -451,7 +451,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="d3s-cp-JLD"/>
                     </view>
-                    <navigationItem key="navigationItem" title="侧边栏" id="Nrj-7e-4nG"/>
+                    <navigationItem key="navigationItem" title="侧边栏" id="Nrj-7e-4nG">
+                        <barButtonItem key="rightBarButtonItem" title="Push" id="vs5-n8-rt8">
+                            <connections>
+                                <action selector="push:" destination="cD5-QV-Xmn" id="uPs-bS-bEe"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <size key="freeformSize" width="375" height="300"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3lc-Jy-S0l" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -476,18 +482,24 @@
                                             <constraint firstAttribute="height" constant="44" id="dKf-HD-RvP"/>
                                         </constraints>
                                         <state key="normal" title="皆非"/>
+                                        <connections>
+                                            <action selector="tapOne:" destination="yF4-9B-kFt" eventType="touchUpInside" id="HSt-2e-Fj1"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3C2-M4-SCe">
                                         <rect key="frame" x="0.0" y="52" width="375" height="44"/>
                                         <color key="backgroundColor" red="0.81339205349999999" green="0.88302705010000004" blue="0.97680455450000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="凉风有信"/>
+                                        <connections>
+                                            <action selector="tapTwo:" destination="yF4-9B-kFt" eventType="touchUpInside" id="h3T-e1-ffx"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3if-Hi-rnC">
                                         <rect key="frame" x="0.0" y="104" width="375" height="44"/>
                                         <color key="backgroundColor" red="0.81339205349999999" green="0.88302705010000004" blue="0.97680455450000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="爱是一阵风"/>
+                                        <state key="normal" title="Dismiss"/>
                                         <connections>
-                                            <action selector="dismiss:" destination="yF4-9B-kFt" eventType="touchUpInside" id="EMZ-DF-XLb"/>
+                                            <action selector="tapDismiss:" destination="yF4-9B-kFt" eventType="touchUpInside" id="Gv9-zg-25Z"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -497,7 +509,7 @@
                                 </constraints>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.0" green="0.99143940210000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="ijE-bV-Aic" firstAttribute="top" secondItem="taN-cD-p33" secondAttribute="top" constant="100" id="WfO-bF-A4X"/>
                             <constraint firstItem="ijE-bV-Aic" firstAttribute="leading" secondItem="taN-cD-p33" secondAttribute="leading" id="jFn-cT-WGh"/>

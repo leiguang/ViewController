@@ -25,9 +25,14 @@ class SideMenuInteractiveTransition: UIPercentDrivenInteractiveTransition {
     // 是否执行交互动画 (不执行交互动画时，需要在“func interactionControllerForPresentation(..)”中返回nil。 在ios11上，不写这个也会正常执行，但是iOS10上就会出现很奇怪的问题)
     var isInteracting = false
     
+    var presentedVC: UIViewController?
+    var presentingVC: UIViewController?
+    
     private var contextData: UIViewControllerContextTransitioning?
     private var containerView: UIView?
     private var panDismissGesture: MyGesture?
+    
+    
     
     override func startInteractiveTransition(_ transitionContext: UIViewControllerContextTransitioning) {
         super.startInteractiveTransition(transitionContext)
@@ -46,6 +51,8 @@ class SideMenuInteractiveTransition: UIPercentDrivenInteractiveTransition {
         self.containerView = transitionContext.containerView
         self.containerView?.addGestureRecognizer(self.panDismissGesture!)
     }
+    
+//    func
 
     func panToPresent(presenting: UIViewController, presented: UIViewController, pan: UIPanGestureRecognizer) {
         guard let inView = presenting.view else { return }
@@ -84,15 +91,15 @@ class SideMenuInteractiveTransition: UIPercentDrivenInteractiveTransition {
             self.cancel()
             return
         }
-//        guard let containerView = self.containerView,
-//            let fromVC = self.contextData?.viewController(forKey: .from),
-//            let toVC = self.contextData?.viewController(forKey: .to),
-//            let fromView = fromVC.view,
-//            let toView = toVC.view else {
-//
-//                self.cancel()
-//                return
-//        }
+        //        guard let containerView = self.containerView,
+        //            let fromVC = self.contextData?.viewController(forKey: .from),
+        //            let toVC = self.contextData?.viewController(forKey: .to),
+        //            let fromView = fromVC.view,
+        //            let toView = toVC.view else {
+        //
+        //                self.cancel()
+        //                return
+        //        }
 
         
         let offsetX = pan.translation(in: containerView).x
@@ -119,11 +126,9 @@ class SideMenuInteractiveTransition: UIPercentDrivenInteractiveTransition {
                 self.cancel()
             }
             self.isInteracting = false
-        //            containerView.removeGestureRecognizer(pan)
         case .cancelled, .failed:
             self.cancel()
-            self.isInteracting = false 
-            //            containerView.removeGestureRecognizer(pan)
+            self.isInteracting = false
         }
     }
     
