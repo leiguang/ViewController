@@ -20,7 +20,7 @@
 		9A18CC2C207A483D009B0D4E /* PresentedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A18CC2B207A483D009B0D4E /* PresentedViewController.swift */; };
 		9A18CC2E207A6BEB009B0D4E /* UnwindSegueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A18CC2D207A6BEB009B0D4E /* UnwindSegueViewController.swift */; };
 		9A351D1420AAD93D00669554 /* MyPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A351D1320AAD93D00669554 /* MyPresentationController.swift */; };
-		9A351D1620ABE30400669554 /* SideMenuMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A351D1520ABE30400669554 /* SideMenuMainViewController.swift */; };
+		9A351D1620ABE30400669554 /* SideMenuMainBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A351D1520ABE30400669554 /* SideMenuMainBaseViewController.swift */; };
 		9A351D1820ABE32400669554 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A351D1720ABE32400669554 /* SideMenuViewController.swift */; };
 		9A351D1A20ABE33A00669554 /* SideMenuDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A351D1920ABE33A00669554 /* SideMenuDetailViewController.swift */; };
 		9A6B1510207EEE2300113D1B /* AddInteractivityToTransitionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B150F207EEE2300113D1B /* AddInteractivityToTransitionsViewController.swift */; };
@@ -28,6 +28,8 @@
 		9A8445F720AC7E9000B508DB /* SideMenuInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8445F620AC7E9000B508DB /* SideMenuInteractiveTransition.swift */; };
 		9A8445F920AC7EAA00B508DB /* SideMenuAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8445F820AC7EAA00B508DB /* SideMenuAnimator.swift */; };
 		9A8445FB20AC7EC500B508DB /* SideMenuTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8445FA20AC7EC500B508DB /* SideMenuTransitioning.swift */; };
+		9A84460220B15CD000B508DB /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A84460120B15CD000B508DB /* MainViewController.swift */; };
+		9A84460520B15E6500B508DB /* NavigationBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A84460420B15E6500B508DB /* NavigationBackground.swift */; };
 		9A84EB60207DDDE30089B2B4 /* PresentRelationshipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A84EB5F207DDDE30089B2B4 /* PresentRelationshipViewController.swift */; };
 		9A92A667207B06E3000D2011 /* ContinuousPresentingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A92A666207B06E3000D2011 /* ContinuousPresentingViewController.swift */; };
 		9A92A669207B070F000D2011 /* ContinuousPresentedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A92A668207B070F000D2011 /* ContinuousPresentedViewController.swift */; };
@@ -49,7 +51,7 @@
 		9A18CC2B207A483D009B0D4E /* PresentedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentedViewController.swift; sourceTree = "<group>"; };
 		9A18CC2D207A6BEB009B0D4E /* UnwindSegueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnwindSegueViewController.swift; sourceTree = "<group>"; };
 		9A351D1320AAD93D00669554 /* MyPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPresentationController.swift; sourceTree = "<group>"; };
-		9A351D1520ABE30400669554 /* SideMenuMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuMainViewController.swift; sourceTree = "<group>"; };
+		9A351D1520ABE30400669554 /* SideMenuMainBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuMainBaseViewController.swift; sourceTree = "<group>"; };
 		9A351D1720ABE32400669554 /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		9A351D1920ABE33A00669554 /* SideMenuDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuDetailViewController.swift; sourceTree = "<group>"; };
 		9A6B150F207EEE2300113D1B /* AddInteractivityToTransitionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInteractivityToTransitionsViewController.swift; sourceTree = "<group>"; };
@@ -57,6 +59,8 @@
 		9A8445F620AC7E9000B508DB /* SideMenuInteractiveTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuInteractiveTransition.swift; sourceTree = "<group>"; };
 		9A8445F820AC7EAA00B508DB /* SideMenuAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuAnimator.swift; sourceTree = "<group>"; };
 		9A8445FA20AC7EC500B508DB /* SideMenuTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTransitioning.swift; sourceTree = "<group>"; };
+		9A84460120B15CD000B508DB /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		9A84460420B15E6500B508DB /* NavigationBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBackground.swift; sourceTree = "<group>"; };
 		9A84EB5F207DDDE30089B2B4 /* PresentRelationshipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentRelationshipViewController.swift; sourceTree = "<group>"; };
 		9A92A666207B06E3000D2011 /* ContinuousPresentingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinuousPresentingViewController.swift; sourceTree = "<group>"; };
 		9A92A668207B070F000D2011 /* ContinuousPresentedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinuousPresentedViewController.swift; sourceTree = "<group>"; };
@@ -157,15 +161,25 @@
 		9A351D1220AABBD100669554 /* Side Menu */ = {
 			isa = PBXGroup;
 			children = (
-				9A351D1520ABE30400669554 /* SideMenuMainViewController.swift */,
+				9A84460420B15E6500B508DB /* NavigationBackground.swift */,
+				9A351D1520ABE30400669554 /* SideMenuMainBaseViewController.swift */,
+				9A84460120B15CD000B508DB /* MainViewController.swift */,
 				9A351D1720ABE32400669554 /* SideMenuViewController.swift */,
 				9A351D1920ABE33A00669554 /* SideMenuDetailViewController.swift */,
+				9A84460320B15DEF00B508DB /* SideMenuTransition */,
+			);
+			path = "Side Menu";
+			sourceTree = "<group>";
+		};
+		9A84460320B15DEF00B508DB /* SideMenuTransition */ = {
+			isa = PBXGroup;
+			children = (
 				9A8445FA20AC7EC500B508DB /* SideMenuTransitioning.swift */,
 				9A8445F820AC7EAA00B508DB /* SideMenuAnimator.swift */,
 				9A8445F620AC7E9000B508DB /* SideMenuInteractiveTransition.swift */,
 				9A8445F420AC7E6900B508DB /* SideMenuPresentationController.swift */,
 			);
-			path = "Side Menu";
+			path = SideMenuTransition;
 			sourceTree = "<group>";
 		};
 		9A92A665207B068C000D2011 /* Continuous Presenting */ = {
@@ -249,6 +263,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A351D1820ABE32400669554 /* SideMenuViewController.swift in Sources */,
+				9A84460220B15CD000B508DB /* MainViewController.swift in Sources */,
 				9A351D1420AAD93D00669554 /* MyPresentationController.swift in Sources */,
 				9A8445F720AC7E9000B508DB /* SideMenuInteractiveTransition.swift in Sources */,
 				9A18CC202079034B009B0D4E /* ChildViewController1.swift in Sources */,
@@ -262,11 +277,12 @@
 				9A8445FB20AC7EC500B508DB /* SideMenuTransitioning.swift in Sources */,
 				9A6B1510207EEE2300113D1B /* AddInteractivityToTransitionsViewController.swift in Sources */,
 				9A8445F520AC7E6900B508DB /* SideMenuPresentationController.swift in Sources */,
+				9A84460520B15E6500B508DB /* NavigationBackground.swift in Sources */,
 				9A18CC0C20776091009B0D4E /* AppDelegate.swift in Sources */,
 				9A18CC2E207A6BEB009B0D4E /* UnwindSegueViewController.swift in Sources */,
 				9A055075207D04800037ED2F /* TransitionAnimationsViewController.swift in Sources */,
 				9A92A667207B06E3000D2011 /* ContinuousPresentingViewController.swift in Sources */,
-				9A351D1620ABE30400669554 /* SideMenuMainViewController.swift in Sources */,
+				9A351D1620ABE30400669554 /* SideMenuMainBaseViewController.swift in Sources */,
 				9A8445F920AC7EAA00B508DB /* SideMenuAnimator.swift in Sources */,
 				9A18CC2A207A4806009B0D4E /* PresentingViewController.swift in Sources */,
 			);

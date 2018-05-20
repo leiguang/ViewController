@@ -21,7 +21,9 @@ let kPanDismissSideMenuVelocityX: CGFloat = -800
 
 
 protocol SideMenuDelegate: class {
-    func push(_ vc: UIViewController)
+    /// 从SideMenuMainViewController中push侧边栏中的ViewController
+    func pushViewControllerFromSideMenu(_ vc: UIViewController)
+    /// 在SideMenuViewController显示完全后，为其关联滑动dismiss手势
     func wirePanToDismissGestureInView(_ view: UIView)
 }
 
@@ -34,55 +36,32 @@ class SideMenuViewController: UIViewController {
 
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        print(#function)
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        print(#function)
-        
-        if let superview = view.superview {
+        if let superview = self.view.superview {
             delegate?.wirePanToDismissGestureInView(superview)
         }
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        print(#function)
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        
-        print(#function)
-    }
-    
+  
     @IBAction func tapOne(_ sender: Any) {
         let vc = SideMenuDetailViewController()
         vc.title = "皆非"
-        show(vc)
+        push(vc)
     }
     
     @IBAction func tapTwo(_ sender: Any) {
         let vc = SideMenuDetailViewController()
         vc.title = "凉风有信"
-        show(vc)
+        push(vc)
     }
     
     @IBAction func tapDismiss(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
-    private func show(_ vc: UIViewController) {
-        dismiss(animated: true, completion: nil)
-        presentingViewController?.show(vc, sender: nil)
-        
-//        delegate?.push(vc)
+    private func push(_ vc: UIViewController) {
+        delegate?.pushViewControllerFromSideMenu(vc)
     }
 
     deinit {

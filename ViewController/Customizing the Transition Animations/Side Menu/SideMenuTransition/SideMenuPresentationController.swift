@@ -10,9 +10,10 @@ import UIKit
 
 class SideMenuPresentationController: UIPresentationController {
     
-    private let dimmingView: UIView
+    let dimmingView: UIView
     
     override init(presentedViewController: UIViewController, presenting presentingViewController: UIViewController?) {
+        
         self.dimmingView = UIView()
         self.dimmingView.backgroundColor = UIColor(white: 0, alpha: 0.3)
         self.dimmingView.alpha = 0.0
@@ -21,10 +22,6 @@ class SideMenuPresentationController: UIPresentationController {
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapDimmingView))
         self.dimmingView.addGestureRecognizer(tapGesture)
-    }
-    
-    deinit {
-        print("\(self) deinit")
     }
     
     @objc private func tapDimmingView(_ tap: UITapGestureRecognizer) {
@@ -37,9 +34,9 @@ class SideMenuPresentationController: UIPresentationController {
         return presentedFrame
     }
     
-    
     override func presentationTransitionWillBegin() {
         guard let containerView = self.containerView else { return }
+
         self.dimmingView.frame = containerView.bounds
         self.dimmingView.alpha = 0.0
         containerView.insertSubview(self.dimmingView, at: 0)
@@ -73,5 +70,9 @@ class SideMenuPresentationController: UIPresentationController {
         if completed {
             self.dimmingView.removeFromSuperview()
         }
+    }
+    
+    deinit {
+        print("\(self) deinit")
     }
 }

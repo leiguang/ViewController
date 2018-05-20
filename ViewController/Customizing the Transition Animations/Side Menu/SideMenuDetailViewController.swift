@@ -13,18 +13,10 @@ class SideMenuDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        view.backgroundColor = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        if let navigationController = self.navigationController {
-            if navigationController.viewControllers.count < 3 {
-                navigationController.interactivePopGestureRecognizer?.isEnabled = false
-            } else {
-                navigationController.interactivePopGestureRecognizer?.isEnabled = true
-            }
-        }
+    deinit {
+        print("\(self) deinit")
     }
 }

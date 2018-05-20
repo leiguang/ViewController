@@ -10,10 +10,9 @@ import UIKit
 
 class SideMenuTransitioning: NSObject, UIViewControllerTransitioningDelegate {
     
-//    lazy var presentAnimator = SideMenuPresentAnimator()
-//    lazy var dismissAnimator = SideMenuDismissAnimator()
     lazy var animator = SideMenuAnimator()
     lazy var interactiveTransition = SideMenuInteractiveTransition()
+    var presentationController: SideMenuPresentationController?
     
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return animator
@@ -32,12 +31,10 @@ class SideMenuTransitioning: NSObject, UIViewControllerTransitioningDelegate {
     }
     
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-        return SideMenuPresentationController(presentedViewController: presented, presenting: presenting)
-    }
-    
-    override init() {
-        super.init()
-        print("\(self) init")
+        if self.presentationController == nil {
+            self.presentationController =  SideMenuPresentationController(presentedViewController: presented, presenting: presenting)
+        }
+        return self.presentationController
     }
     
     deinit {

@@ -6,127 +6,6 @@
 //  Copyright © 2018年 leiguang. All rights reserved.
 //
 
-import UIKit
-
-//class SideMenuPresentAnimator: NSObject, UIViewControllerAnimatedTransitioning {
-//    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-//        return 0.25
-//    }
-//
-//    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-//        guard let fromVC = transitionContext.viewController(forKey: .from),
-//            let toVC = transitionContext.viewController(forKey: .to),
-//            let fromView = fromVC.view,
-//            let toView = toVC.view else {
-//                fatalError("无法找到fromVC或toVC")
-//        }
-//
-//
-//        let fromViewFinalFrame = transitionContext.initialFrame(for: fromVC).offsetBy(dx: kSideMenuWidth, dy: 0)
-//        let toViewFinalFrame = transitionContext.finalFrame(for: toVC)
-//        let toViewStartFrame = toViewFinalFrame.offsetBy(dx: -UIScreen.main.bounds.width, dy: 0)
-//
-//
-//        let containerView = transitionContext.containerView
-//        toView.frame = toViewStartFrame
-//
-//        containerView.addSubview(fromView)
-//        containerView.addSubview(toView)
-//        containerView.insertSubview(fromView, at: 0)
-//
-////        let v = fromView.snapshotView(afterScreenUpdates: false)
-////        containerView.insertSubview(fromView, at: 0)
-////        containerView.addSubview(toView)
-////        containerView.bringSubview(toFront: toView)
-//
-//        containerView.insertSubview(toView, aboveSubview: fromView)
-//
-//
-//        UIView.animate(withDuration: self.transitionDuration(using: transitionContext), delay: 0, options: .curveLinear, animations: {
-//            //        UIView.animate(withDuration: self.transitionDuration(using: transitionContext), animations: {
-//
-//            fromView.frame = fromViewFinalFrame
-//            toView.frame = toViewFinalFrame
-//
-//        }) { (_) in
-//            let cancelled = transitionContext.transitionWasCancelled
-//            if cancelled {
-//                toView.removeFromSuperview()
-//            }
-//            transitionContext.completeTransition(!cancelled)
-//        }
-//    }
-//
-//    override init() {
-//        super.init()
-//        print("\(self) init")
-//    }
-//
-//    deinit {
-//        print("\(self) deinit")
-//    }
-//}
-//
-//class SideMenuDismissAnimator: NSObject, UIViewControllerAnimatedTransitioning {
-//
-//    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-//        return 0.25
-//    }
-//
-//    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-//        guard let fromVC = transitionContext.viewController(forKey: .from),
-//            let toVC = transitionContext.viewController(forKey: .to),
-//            let fromView = fromVC.view,
-//            let toView = toVC.view else {
-//                fatalError("无法找到fromVC或toVC")
-//        }
-//
-//
-//
-//        let fromViewFinalFrame = transitionContext.initialFrame(for: fromVC).offsetBy(dx: -UIScreen.main.bounds.width, dy: 0)
-//        let toViewFinalFrame = transitionContext.finalFrame(for: toVC)
-//
-//
-//        let containerView = transitionContext.containerView
-//
-////        containerView.addSubview(toView)
-//
-////        containerView.insertSubview(fromView, aboveSubview: toView)
-//
-////        containerView.addSubview(toView)
-////        containerView.addSubview(fromView)
-////        containerView.sendSubview(toBack: toView)
-////        containerView.bringSubview(toFront: fromView)
-//
-//
-//        UIView.animate(withDuration: self.transitionDuration(using: transitionContext), delay: 0, options: .curveLinear, animations: {
-//            //        UIView.animate(withDuration: self.transitionDuration(using: transitionContext), animations: {
-//
-//            fromView.frame = fromViewFinalFrame
-//            toView.frame = toViewFinalFrame
-//
-//        }) { (_) in
-////            UIApplication.shared.keyWindow?.addSubview(toView)
-//            let cancelled = transitionContext.transitionWasCancelled
-//            transitionContext.completeTransition(!cancelled)
-//        }
-//    }
-//
-//    override init() {
-//        super.init()
-//        print("\(self) init")
-//    }
-//
-//    deinit {
-//        print("\(self) deinit")
-//    }
-//}
-
-
-
-
-
-
 /**
  注意，这里处理视图层级 presentingSuperview部分的代码非常关键！！！  （如果没有这段，在iOS11上是正常的，但是在iOS10上presenting视图控制器 却无法跟随手势动画）
 
@@ -145,6 +24,9 @@ import UIKit
  
  [参考自https://github.com/jonkykong/SideMenu]
  */
+
+import UIKit
+
 class SideMenuAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 
     var presentingSuperview: UIView?
@@ -166,17 +48,14 @@ class SideMenuAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         // present：true；  dismiss：false
         let presenting: Bool = (fromVC.presentedViewController == toVC)
 
-        let screenWidth = UIScreen.main.bounds.width
-        let screenHeight = UIScreen.main.bounds.height
-
         var toViewStartFrame = transitionContext.initialFrame(for: toVC)
         var fromViewFinalFrame = transitionContext.finalFrame(for: fromVC)
         var toViewFinalFrame = transitionContext.finalFrame(for: toVC)
 
         if presenting {
             fromViewFinalFrame.origin.x = kSideMenuWidth
-            toViewStartFrame = CGRect(x: -kSideMenuWidth, y: 0, width: kSideMenuWidth, height: screenHeight)
-            toViewFinalFrame = CGRect(x: 0, y: 0, width: kSideMenuWidth, height: screenHeight)
+            toViewStartFrame = CGRect(x: -kSideMenuWidth, y: 0, width: kSideMenuWidth, height: UIScreen.main.bounds.height)
+            toViewFinalFrame = CGRect(x: 0, y: 0, width: kSideMenuWidth, height: UIScreen.main.bounds.height)
         } else {
             fromViewFinalFrame.origin.x = -kSideMenuWidth
             toViewFinalFrame.origin.x = 0
@@ -193,13 +72,7 @@ class SideMenuAnimator: NSObject, UIViewControllerAnimatedTransitioning {
             containerView.addSubview(toView)
             containerView.sendSubview(toBack: fromView)
             containerView.bringSubview(toFront: toView)
-//            containerView.insertSubview(toView, aboveSubview: fromView)
-        } else {
-//            containerView.insertSubview(fromView, aboveSubview: toView)
-//            containerView.sendSubview(toBack: toView)
-//            containerView.bringSubview(toFront: fromView)
         }
-
         
         // iOS 11上刚开始触摸时会闪动，日了狗了。终于找到如下解决办法，设置一个简短的delay
         UIView.animate(withDuration: self.transitionDuration(using: transitionContext),
@@ -215,9 +88,6 @@ class SideMenuAnimator: NSObject, UIViewControllerAnimatedTransitioning {
             }
         }) { (_) in
             let cancelled = transitionContext.transitionWasCancelled
-//            if presenting && cancelled {
-//                toView.removeFromSuperview()
-//            }
             transitionContext.completeTransition(!cancelled)
 
             // 最后一步：恢复 presentingView 到原来的视图结构里。(如果是在 FullScreen 模式下，UIKit 会自动做这件事，可以省去这一步。)
@@ -228,11 +98,6 @@ class SideMenuAnimator: NSObject, UIViewControllerAnimatedTransitioning {
                 self.presentingSuperview?.addSubview(toView)
             }
         }
-    }
-
-    override init() {
-        super.init()
-        print("\(self) init")
     }
 
     deinit {

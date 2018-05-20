@@ -426,7 +426,7 @@
         <!--侧边栏-->
         <scene sceneID="dve-g6-8mi">
             <objects>
-                <viewController id="cD5-QV-Xmn" customClass="SideMenuMainViewController" customModule="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="cD5-QV-Xmn" customClass="MainViewController" customModule="ViewController" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lb5-UG-Y4f">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -440,7 +440,7 @@
                                 </constraints>
                                 <state key="normal" title="Present Side Menu ViewController"/>
                                 <connections>
-                                    <action selector="presentSideMenuViewController:" destination="cD5-QV-Xmn" eventType="touchUpInside" id="lkW-b2-26C"/>
+                                    <action selector="presentSideMenuViewController:" destination="cD5-QV-Xmn" eventType="touchUpInside" id="V9H-jz-Uen"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -454,7 +454,7 @@
                     <navigationItem key="navigationItem" title="侧边栏" id="Nrj-7e-4nG">
                         <barButtonItem key="rightBarButtonItem" title="Push" id="vs5-n8-rt8">
                             <connections>
-                                <action selector="push:" destination="cD5-QV-Xmn" id="uPs-bS-bEe"/>
+                                <segue destination="ZsQ-sG-48R" kind="show" id="ilC-LI-okM"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -463,6 +463,23 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3lc-Jy-S0l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3945" y="40"/>
+        </scene>
+        <!--Push-->
+        <scene sceneID="G92-Ig-uuk">
+            <objects>
+                <viewController id="ZsQ-sG-48R" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="J3H-2S-iRn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="JsR-D3-dgx"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Push" id="lsV-Tz-ssP"/>
+                    <size key="freeformSize" width="375" height="300"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xvn-AV-prQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4660" y="40"/>
         </scene>
         <!--Side Menu View Controller-->
         <scene sceneID="U7h-po-CwL">
@@ -521,7 +538,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sNf-SR-moM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4637.6000000000004" y="39.580209895052477"/>
+            <point key="canvasLocation" x="4271" y="372"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PmG-dD-g3K">
