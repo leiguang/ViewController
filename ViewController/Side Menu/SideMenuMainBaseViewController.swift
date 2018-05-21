@@ -23,7 +23,7 @@ class SideMenuMainBaseViewController: UIViewController, SideMenuDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.sideMenuTransitioning.interactiveTransition.addPanToPresentGestureAt(presentingVC: self, presentedVC: self.menuViewController)
+        self.sideMenuTransitioning.interactiveTransition.addPresentGestureInView(self.view, presentingVC: self, presentedVC: self.menuViewController)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -66,8 +66,8 @@ class SideMenuMainBaseViewController: UIViewController, SideMenuDelegate {
         CATransaction.commit()
     }
     
-    func wirePanToDismissGestureInView(_ view: UIView) {
-        self.sideMenuTransitioning.interactiveTransition.addPanToDismissGestureInView(view)
+    func wireDismissGestureInView(_ view: UIView) {
+        self.sideMenuTransitioning.interactiveTransition.addDismissGestureInView(view)
     }
 
     deinit {

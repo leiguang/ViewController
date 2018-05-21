@@ -24,7 +24,7 @@ protocol SideMenuDelegate: class {
     /// 从SideMenuMainViewController中push侧边栏中的ViewController
     func pushViewControllerFromSideMenu(_ vc: UIViewController)
     /// 在SideMenuViewController显示完全后，为其关联滑动dismiss手势
-    func wirePanToDismissGestureInView(_ view: UIView)
+    func wireDismissGestureInView(_ view: UIView)
 }
 
 class SideMenuViewController: UIViewController {
@@ -40,7 +40,7 @@ class SideMenuViewController: UIViewController {
         super.viewDidAppear(animated)
         
         if let superview = self.view.superview {
-            delegate?.wirePanToDismissGestureInView(superview)
+            delegate?.wireDismissGestureInView(superview)
         }
     }
   

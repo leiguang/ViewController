@@ -16,8 +16,10 @@ class SideMenuInteractiveTransition: UIPercentDrivenInteractiveTransition {
     private weak var presentedVC: UIViewController?
     private weak var presentingVC: UIViewController?
     
-    /// 滑动dismiss的手势 作用的view (这里是containerView)
-    var viewOfPanDismissGesture: UIView?
+    /// 滑动present手势 作用的view
+    private weak var viewOfPressentGesture: UIView?
+    /// 滑动dismiss手势 作用的view
+    private weak var viewOfDismissGesture: UIView?
     
     private lazy var presentGesture: UIPanGestureRecognizer = {
         let pan = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(panToPresent))
@@ -32,27 +34,28 @@ class SideMenuInteractiveTransition: UIPercentDrivenInteractiveTransition {
     }()
     
     
-    func addPanToPresentGestureAt(presentingVC: UIViewController, presentedVC: UIViewController) {
-        if (presentingVC.view.gestureRecognizers == nil) ||
-            (presentingVC.view.gestureRecognizers != nil && !presentingVC.view.gestureRecognizers!.contains(presentGesture))
+    func addPresentGestureInView(_ inView: UIView, presentingVC: UIViewController, presentedVC: UIViewController) {
+        if (self.viewOfPressentGesture == nil) ||
+            (self.viewOfPressentGesture != nil && self.viewOfPressentGesture!.gestureRecognizers != nil && !self.viewOfPressentGesture!.gestureRecognizers!.contains(presentGesture))
         {
-            presentingVC.view.addGestureRecognizer(presentGesture)
+            inView.addGestureRecognizer(presentGesture)
+            self.viewOfPressentGesture = inView
             self.presentingVC = presentingVC
             self.presentedVC = presentedVC
         }
     }
     
-    func addPanToDismissGestureInView(_ inView: UIView) {
+    func addDismissGestureInView(_ inView: UIView) {
         if (inView.gestureRecognizers == nil) ||
             (inView.gestureRecognizers != nil && !inView.gestureRecognizers!.contains(dismissGesture))
         {
             inView.addGestureRecognizer(dismissGesture)
-            self.viewOfPanDismissGesture = inView
+            self.viewOfDismissGesture = inView
         }
     }
     
     @objc func panToPresent(_ pan: UIPanGestureRecognizer) {
-        guard let presentingVC = self.presentingVC, let presentedVC = self.presentedVC, let inView = presentingVC.view else { return }
+        guard let inView = self.viewOfPressentGesture, let presentingVC = self.presentingVC, let presentedVC = self.presentedVC else { return }
         let offsetX = pan.translation(in: inView).x
         let velocityX = pan.velocity(in: inView).x
         
@@ -84,7 +87,7 @@ class SideMenuInteractiveTransition: UIPercentDrivenInteractiveTransition {
     }
     
     @objc private func panToDismiss(_ pan: UIPanGestureRecognizer) {
-        guard let presentVC = self.presentedVC, let containerView = self.viewOfPanDismissGesture else {
+        guard let presentVC = self.presentedVC, let containerView = self.viewOfDismissGesture else {
             return
         }
         
