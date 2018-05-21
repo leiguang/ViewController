@@ -6,6 +6,11 @@
 //  Copyright © 2018年 leiguang. All rights reserved.
 //
 
+// [ImageScrollView](https://github.com/imanoupetit/ImageScrollView)
+// [Zooming by Tapping](https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/UIScrollView_pg/ZoomingByTouch/ZoomingByTouch.html#//apple_ref/doc/uid/TP40008179-CH4-SW1)
+// [Zooming Programmatically]https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/UIScrollView_pg/ZoomZoom/ZoomZoom.html#//apple_ref/doc/uid/TP40008179-CH102-SW7)
+
+
 import UIKit
 
 class ZoomedPhotoViewController: UIViewController {
@@ -33,6 +38,8 @@ class ZoomedPhotoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = .black
+        
         setupUI()
         setConstraints()
 
@@ -44,6 +51,13 @@ class ZoomedPhotoViewController: UIViewController {
         
         print("scrollView: \(scrollView.hasAmbiguousLayout), \(scrollView.frame)")
         print("imageView: \(imageView.hasAmbiguousLayout), \(imageView.frame)")
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.imageView.image = UIImage(named: "xs")
+            self.imageView.sizeToFit()
+            self.updateMinZoomScale(forSize: self.view.bounds.size)
+//            self.updateConstraints(forSize: self.view.bounds.size)
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -79,14 +93,22 @@ class ZoomedPhotoViewController: UIViewController {
         
         scrollView = UIScrollView()
         scrollView.delegate = self
+//        if #available(iOS 11.0, *) {
+//            scrollView.contentInsetAdjustmentBehavior = .never
+//        } else {
+//            // Fallback on earlier versions
+//        } // Adjust content according to safe area if necessary
+//        scrollView.showsVerticalScrollIndicator = false
+//        scrollView.showsHorizontalScrollIndicator = false
+//        scrollView.alwaysBounceHorizontal = true
+//        scrollView.alwaysBounceVertical = true
+        view.addSubview(scrollView)
         
         let image = UIImage(named: photoName)!
         imageView = UIImageView(image: image)
-        imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        imageView.clipsToBounds = true 
-        
-        view.addSubview(scrollView)
+//        imageView.contentMode = .scaleAspectFit
+//        imageView.sizeToFit()
+        imageView.clipsToBounds = true
         scrollView.addSubview(imageView)
     }
 
@@ -133,6 +155,10 @@ class ZoomedPhotoViewController: UIViewController {
     
     @objc func myDismiss() {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    deinit {
+        print("\(self) deinit")
     }
 }
 

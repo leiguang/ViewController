@@ -18,6 +18,9 @@ class PhotosBrowserViewController: UIPageViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        view.backgroundColor = .black
+        
+        
         let pageControl = UIPageControl.appearance()
         pageControl.pageIndicatorTintColor = .lightGray
         pageControl.currentPageIndicatorTintColor = .red
@@ -43,6 +46,10 @@ class PhotosBrowserViewController: UIPageViewController {
     
     override var prefersStatusBarHidden: Bool {
         return true
+    }
+    
+    deinit {
+        print("\(self) deinit")
     }
 }
 
