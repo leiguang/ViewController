@@ -13,7 +13,7 @@
         <!--View Controller-->
         <scene sceneID="t5m-HL-85s">
             <objects>
-                <tableViewController id="1Aa-Lt-8gu" customClass="TableViewController" customModule="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="1Aa-Lt-8gu" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="YTL-0J-g8n">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -611,51 +611,6 @@
             </objects>
             <point key="canvasLocation" x="3920.8000000000002" y="784.40779610194909"/>
         </scene>
-        <!--Zoomed Photo View Controller-->
-        <scene sceneID="LxF-H8-And">
-            <objects>
-                <viewController storyboardIdentifier="ZoomedPhotoViewController" id="8kX-wi-PZ5" customClass="ZoomedPhotoViewController" customModule="ViewController" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="U3r-Cs-zz5">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fcq-Fk-LXi">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo0" translatesAutoresizingMaskIntoConstraints="NO" id="MYB-WD-rVB">
-                                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
-                                    </imageView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="MYB-WD-rVB" secondAttribute="bottom" id="A1N-0w-oxL"/>
-                                    <constraint firstAttribute="trailing" secondItem="MYB-WD-rVB" secondAttribute="trailing" id="DW4-c6-aiw"/>
-                                    <constraint firstItem="MYB-WD-rVB" firstAttribute="top" secondItem="Fcq-Fk-LXi" secondAttribute="top" id="Eb9-DB-nsB"/>
-                                    <constraint firstItem="MYB-WD-rVB" firstAttribute="leading" secondItem="Fcq-Fk-LXi" secondAttribute="leading" id="njL-xR-aKG"/>
-                                </constraints>
-                            </scrollView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="yda-Os-rLA" firstAttribute="trailing" secondItem="Fcq-Fk-LXi" secondAttribute="trailing" id="1TA-b4-P6T"/>
-                            <constraint firstItem="yda-Os-rLA" firstAttribute="bottom" secondItem="Fcq-Fk-LXi" secondAttribute="bottom" id="DQY-sM-bbP"/>
-                            <constraint firstItem="Fcq-Fk-LXi" firstAttribute="leading" secondItem="yda-Os-rLA" secondAttribute="leading" id="Gnu-nR-6My"/>
-                            <constraint firstItem="Fcq-Fk-LXi" firstAttribute="top" secondItem="yda-Os-rLA" secondAttribute="top" id="GuC-sJ-Ypu"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="yda-Os-rLA"/>
-                    </view>
-                    <connections>
-                        <outlet property="imageView" destination="MYB-WD-rVB" id="44D-EQ-DaQ"/>
-                        <outlet property="imageViewBottomConstraint" destination="A1N-0w-oxL" id="Nk3-W7-wAa"/>
-                        <outlet property="imageViewLeadingConstraint" destination="njL-xR-aKG" id="wXX-bA-oka"/>
-                        <outlet property="imageViewTopConstraint" destination="Eb9-DB-nsB" id="rhn-Y8-Ach"/>
-                        <outlet property="imageViewTrailingConstraint" destination="DW4-c6-aiw" id="0yf-xR-ijR"/>
-                        <outlet property="scrollView" destination="Fcq-Fk-LXi" id="u8C-ne-rMi"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ey1-qg-4cd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4660" y="949"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="PmG-dD-g3K">
             <objects>
@@ -675,7 +630,4 @@
             <point key="canvasLocation" x="2092" y="-1042.128935532234"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="photo0" width="1024" height="768"/>
-    </resources>
 </document>

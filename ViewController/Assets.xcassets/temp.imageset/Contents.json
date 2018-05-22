@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "temp.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "屏幕快照 2016-06-18 下午8.13.38.png",
       "scale" : "2x"
     },
     {

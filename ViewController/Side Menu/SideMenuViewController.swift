@@ -6,6 +6,8 @@
 //  Copyright © 2018年 leiguang. All rights reserved.
 //
 
+// 推荐使用侧边栏库 [SideMenu](https://github.com/jonkykong/SideMenu)
+
 import UIKit
 
 /// 侧边栏的宽度

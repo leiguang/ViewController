@@ -35,7 +35,9 @@
 		9AC761BA20B29021002FFB8E /* PhotosBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC761B920B29021002FFB8E /* PhotosBrowserViewController.swift */; };
 		9AC761BC20B290F0002FFB8E /* PhotoMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC761BB20B290F0002FFB8E /* PhotoMainViewController.swift */; };
 		9AC761BE20B2928A002FFB8E /* PhotoMainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC761BD20B2928A002FFB8E /* PhotoMainCell.swift */; };
-		9AC761C020B29997002FFB8E /* ZoomedPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC761BF20B29997002FFB8E /* ZoomedPhotoViewController.swift */; };
+		9AC761C020B29997002FFB8E /* PhotoZoomedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC761BF20B29997002FFB8E /* PhotoZoomedViewController.swift */; };
+		9AC761C420B3CCAE002FFB8E /* PhotosBrowserTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC761C320B3CCAE002FFB8E /* PhotosBrowserTransition.swift */; };
+		9AC761C620B3FF7D002FFB8E /* ViewConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC761C520B3FF7D002FFB8E /* ViewConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,7 +71,9 @@
 		9AC761B920B29021002FFB8E /* PhotosBrowserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosBrowserViewController.swift; sourceTree = "<group>"; };
 		9AC761BB20B290F0002FFB8E /* PhotoMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoMainViewController.swift; sourceTree = "<group>"; };
 		9AC761BD20B2928A002FFB8E /* PhotoMainCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoMainCell.swift; sourceTree = "<group>"; };
-		9AC761BF20B29997002FFB8E /* ZoomedPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomedPhotoViewController.swift; sourceTree = "<group>"; };
+		9AC761BF20B29997002FFB8E /* PhotoZoomedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoZoomedViewController.swift; sourceTree = "<group>"; };
+		9AC761C320B3CCAE002FFB8E /* PhotosBrowserTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosBrowserTransition.swift; sourceTree = "<group>"; };
+		9AC761C520B3FF7D002FFB8E /* ViewConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +118,7 @@
 			children = (
 				9A18CC0B20776091009B0D4E /* AppDelegate.swift */,
 				9A18CC0F20776091009B0D4E /* Main.storyboard */,
+				9AC761C520B3FF7D002FFB8E /* ViewConstants.swift */,
 				9A351D1120AAB48400669554 /* Present Relationship */,
 				9A18CC27207A46E1009B0D4E /* Implementing a ContainerViewController */,
 				9A18CC28207A46FD009B0D4E /* Presenting a ViewController */,
@@ -203,7 +208,8 @@
 				9AC761BB20B290F0002FFB8E /* PhotoMainViewController.swift */,
 				9AC761BD20B2928A002FFB8E /* PhotoMainCell.swift */,
 				9AC761B920B29021002FFB8E /* PhotosBrowserViewController.swift */,
-				9AC761BF20B29997002FFB8E /* ZoomedPhotoViewController.swift */,
+				9AC761BF20B29997002FFB8E /* PhotoZoomedViewController.swift */,
+				9AC761C320B3CCAE002FFB8E /* PhotosBrowserTransition.swift */,
 			);
 			path = "Photos Browser";
 			sourceTree = "<group>";
@@ -281,11 +287,13 @@
 			files = (
 				9A351D1820ABE32400669554 /* SideMenuViewController.swift in Sources */,
 				9AC761BA20B29021002FFB8E /* PhotosBrowserViewController.swift in Sources */,
+				9AC761C620B3FF7D002FFB8E /* ViewConstants.swift in Sources */,
 				9A84460220B15CD000B508DB /* MainViewController.swift in Sources */,
 				9A351D1420AAD93D00669554 /* MyPresentationController.swift in Sources */,
 				9A8445F720AC7E9000B508DB /* SideMenuInteractiveTransition.swift in Sources */,
 				9A18CC202079034B009B0D4E /* ChildViewController1.swift in Sources */,
 				9AC761BE20B2928A002FFB8E /* PhotoMainCell.swift in Sources */,
+				9AC761C420B3CCAE002FFB8E /* PhotosBrowserTransition.swift in Sources */,
 				9A18CC2C207A483D009B0D4E /* PresentedViewController.swift in Sources */,
 				9A18CC1E20790297009B0D4E /* ContainerViewController.swift in Sources */,
 				9A84EB60207DDDE30089B2B4 /* PresentRelationshipViewController.swift in Sources */,
@@ -304,7 +312,7 @@
 				9A351D1620ABE30400669554 /* SideMenuMainBaseViewController.swift in Sources */,
 				9A8445F920AC7EAA00B508DB /* SideMenuAnimator.swift in Sources */,
 				9A18CC2A207A4806009B0D4E /* PresentingViewController.swift in Sources */,
-				9AC761C020B29997002FFB8E /* ZoomedPhotoViewController.swift in Sources */,
+				9AC761C020B29997002FFB8E /* PhotoZoomedViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

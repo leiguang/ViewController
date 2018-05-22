@@ -22,7 +22,7 @@
  
  // HACK: If zero, the animation briefly flashes in iOS 11. UIViewPropertyAnimators (iOS 10+) may resolve this.
  
- [参考自https://github.com/jonkykong/SideMenu]
+ > [SideMenu](https://github.com/jonkykong/SideMenu)
  */
 
 import UIKit

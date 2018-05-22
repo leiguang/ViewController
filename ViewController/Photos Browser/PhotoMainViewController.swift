@@ -38,15 +38,8 @@ extension PhotoMainViewController {
 extension PhotoMainViewController {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let pages = PhotosBrowserViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: [UIPageViewControllerOptionInterPageSpacingKey: 8.0])
-//        pages.photos = photos
-//        pages.currentIndex = indexPath.row
-//        present(pages, animated: true, completion: nil)
-        
-        let page = ZoomedPhotoViewController()
-        page.photoName = photos[indexPath.row]
-        page.photoIndex = indexPath.row
-        present(page, animated: true, completion: nil)
+        let vc = PhotosBrowserViewController(photos: photos, presentIndex: indexPath.row, fromViewArray: collectionView.visibleCells)
+        present(vc, animated: true, completion: nil)
     }
 }
 
