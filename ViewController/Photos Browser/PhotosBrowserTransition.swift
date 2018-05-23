@@ -48,7 +48,7 @@ extension PhotosBrowserTransition: UIViewControllerAnimatedTransitioning {
         
         if presenting {
             if let photoBrowserVC = toVC as? PhotosBrowserViewController,
-                let image = photoBrowserVC.currentImage,
+                let image = photoBrowserVC.imageOfPresent,
                 let startRect = photoBrowserVC.imageStartFrameOfPresent,
                 let imageView = photoBrowserVC.currentImageView
             {
@@ -62,9 +62,9 @@ extension PhotosBrowserTransition: UIViewControllerAnimatedTransitioning {
             
         } else {
             if let photoBrowserVC = fromVC as? PhotosBrowserViewController,
-                let image = photoBrowserVC.currentImage,
-                let startRect = photoBrowserVC.imageStartFrameOfDismiss,
-                let imageView = photoBrowserVC.currentImageView
+                let imageView = photoBrowserVC.currentImageView,
+                let image = imageView.image,
+                let startRect = photoBrowserVC.imageStartFrameOfDismiss
             {
                 tempImageView = UIImageView(image: image)
                 tempImageView?.frame = startRect

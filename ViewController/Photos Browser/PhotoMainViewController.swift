@@ -12,7 +12,7 @@ class PhotoMainViewController: UICollectionViewController {
     private let reuseIdentifier = "PhotoMainCell"
     private let thumbnailSize: CGFloat = 70.0
     private let sectionInsets = UIEdgeInsets(top: 10.0, left: 5.0, bottom: 10.0, right: 5.0)
-    private let photos = ["photo0", "photo1", "photo2", "photo3", "photo4"]
+    private let photos = ["photo0", "photo1", "photo2", "photo3", "photo4", "photo5", "photo6", "photo7"]
 }
 
 // MARK: - UICollectionViewDataSource
@@ -38,7 +38,12 @@ extension PhotoMainViewController {
 extension PhotoMainViewController {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = PhotosBrowserViewController(photos: photos, presentIndex: indexPath.row, fromViewArray: collectionView.visibleCells)
+        // 注意： 经测试发现 通过collectionView.visibleCells获取到的cell，不能保证顺序正确。
+        let cells = (0..<photos.count).compactMap {
+            collectionView.cellForItem(at: IndexPath(row: $0, section: 0))
+        }
+        
+        let vc = PhotosBrowserViewController(photos: photos, presentIndex: indexPath.row, fromViewArray: cells)
         present(vc, animated: true, completion: nil)
     }
 }

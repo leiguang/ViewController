@@ -147,10 +147,9 @@ extension PhotosBrowserViewController {
     
     /// present完成时，imageView的frame
     var imageEndFrameOfPresent: CGRect? {
-        if let zoomedPhotoVC = viewControllers?.first as? PhotoZoomedViewController,
-            let endRect = zoomedPhotoVC.imageEndFrameOfPresent
+        if let zoomedPhotoVC = viewControllers?.first as? PhotoZoomedViewController
         {
-            return endRect
+            return zoomedPhotoVC.imageEndFrameOfPresent
         }
         return nil
     }
@@ -165,9 +164,12 @@ extension PhotosBrowserViewController {
     }
     
     /// present时的image
-    var currentImage: UIImage? {
-        guard currentIndex >= 0, currentIndex < photos.endIndex else { return nil }
-        return UIImage(named: photos[currentIndex])
+    var imageOfPresent: UIImage? {
+        if let zoomedPhotoVC = viewControllers?.first as? PhotoZoomedViewController
+        {
+            return zoomedPhotoVC.initializedPhoto
+        }
+        return nil
     }
     
     /// present时的imageView

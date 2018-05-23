@@ -448,11 +448,11 @@
             <objects>
                 <viewController id="cD5-QV-Xmn" customClass="MainViewController" customModule="ViewController" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lb5-UG-Y4f">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0fP-r3-eDT">
-                                <rect key="frame" x="77" y="144" width="221" height="100"/>
+                                <rect key="frame" x="77" y="164" width="221" height="100"/>
                                 <color key="backgroundColor" red="1" green="0.98039215690000003" blue="0.01176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="Z4P-Ys-sHf"/>
@@ -463,11 +463,47 @@
                                     <action selector="presentSideMenuViewController:" destination="cD5-QV-Xmn" eventType="touchUpInside" id="V9H-jz-Uen"/>
                                 </connections>
                             </button>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S2u-fi-BYK">
+                                <rect key="frame" x="0.0" y="344" width="375" height="180"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JIa-Bs-p7h">
+                                        <rect key="frame" x="0.0" y="0.0" width="502.5" height="180"/>
+                                        <color key="backgroundColor" red="0.86666666670000003" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="180" id="ncW-qD-637"/>
+                                        </constraints>
+                                        <attributedString key="attributedText">
+                                            <fragment>
+                                                <string key="content">UIScrollView 
+(show a solution to the sideMenuGesture conflit)
+雨声潺潺，像住在溪边，宁愿天天下雨，以为你是因为下雨不来。
+隐约雷鸣，阴霾天空，但盼风雨来，能留你在此。
+隐约雷鸣，阴霾天空，即使天无雨，我亦留此地。</string>
+                                                <attributes>
+                                                    <font key="NSFont" size="17" name=".PingFangSC-Regular"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" lineSpacing="5" paragraphSpacing="5" paragraphSpacingBefore="5" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="JIa-Bs-p7h" secondAttribute="bottom" id="2MV-7a-AMP"/>
+                                    <constraint firstItem="JIa-Bs-p7h" firstAttribute="top" secondItem="S2u-fi-BYK" secondAttribute="top" id="IGS-P4-hul"/>
+                                    <constraint firstAttribute="trailing" secondItem="JIa-Bs-p7h" secondAttribute="trailing" id="SQS-qh-kZm"/>
+                                    <constraint firstItem="JIa-Bs-p7h" firstAttribute="leading" secondItem="S2u-fi-BYK" secondAttribute="leading" id="Ylk-m2-fXi"/>
+                                    <constraint firstAttribute="height" constant="180" id="ecH-rz-Ibm"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="d3s-cp-JLD" firstAttribute="trailing" secondItem="S2u-fi-BYK" secondAttribute="trailing" id="ZmR-QK-6A6"/>
+                            <constraint firstItem="S2u-fi-BYK" firstAttribute="top" secondItem="0fP-r3-eDT" secondAttribute="bottom" constant="80" id="bkh-dT-fFh"/>
                             <constraint firstItem="0fP-r3-eDT" firstAttribute="top" secondItem="d3s-cp-JLD" secondAttribute="top" constant="100" id="fgu-SQ-iKD"/>
                             <constraint firstItem="0fP-r3-eDT" firstAttribute="centerX" secondItem="d3s-cp-JLD" secondAttribute="centerX" id="oOP-qI-zp4"/>
+                            <constraint firstItem="S2u-fi-BYK" firstAttribute="leading" secondItem="d3s-cp-JLD" secondAttribute="leading" id="yLR-ED-PYt"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="d3s-cp-JLD"/>
                     </view>
@@ -478,11 +514,14 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <size key="freeformSize" width="375" height="300"/>
+                    <size key="freeformSize" width="375" height="600"/>
+                    <connections>
+                        <outlet property="scrollView" destination="S2u-fi-BYK" id="x48-O0-zut"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3lc-Jy-S0l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3945" y="40"/>
+            <point key="canvasLocation" x="3958" y="175"/>
         </scene>
         <!--Push-->
         <scene sceneID="G92-Ig-uuk">
@@ -558,7 +597,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sNf-SR-moM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4271" y="372"/>
+            <point key="canvasLocation" x="4638" y="416"/>
         </scene>
         <!--Photos Browser-->
         <scene sceneID="4eF-Br-leE">
@@ -609,7 +648,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9cz-VS-zAp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3920.8000000000002" y="784.40779610194909"/>
+            <point key="canvasLocation" x="3945" y="785"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PmG-dD-g3K">

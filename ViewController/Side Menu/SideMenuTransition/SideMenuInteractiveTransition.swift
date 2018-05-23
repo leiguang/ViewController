@@ -21,13 +21,14 @@ class SideMenuInteractiveTransition: UIPercentDrivenInteractiveTransition {
     /// 滑动dismiss手势 作用的view
     private weak var viewOfDismissGesture: UIView?
     
-    private lazy var presentGesture: UIPanGestureRecognizer = {
+    // 暴露出来，提供给外部来解决手势冲突
+    lazy var presentGesture: UIPanGestureRecognizer = {
         let pan = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(panToPresent))
         pan.edges = .left
         return pan
     }()
     
-    private lazy var dismissGesture: UIPanGestureRecognizer = {
+    lazy var dismissGesture: UIPanGestureRecognizer = {
         let pan = UIPanGestureRecognizer(target: self, action: #selector(panToDismiss))
         pan.maximumNumberOfTouches = 1
         return pan

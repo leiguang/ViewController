@@ -13,7 +13,18 @@
 
     eg: self.imageView.image = UIImage(named: "leiguang")
         self.imageView.sizeToFit()
-        self.updateMinZoomScale(forSize: self.view.bounds.size)
+        self.updateMinZoomScale(forSize: scrollView.bounds.size)
+ */
+
+/**
+ 测试发现:
+    当缩放时，改变的是imageView的frame；
+    当拖动产生bounces效果时，改变的是imageView的transform，而frame是固定不变的 (因此在图片处于原位时可以加此判断)。
+ 
+ 由于下拉dismiss时，图片会从未缩放的起始位置开始执行动画，会导致dismiss动画的显示有闪变。
+ 可优化处：执行dismiss时，可以将当前transform的变化量加上图片transform前的位置 计算出的位置， 用于dismiss的tempImageView的起始位置
+ 
+ 在pan dismiss手势中，如果图片处于起始位置，且拖拽结束时手势的偏移量 比图片未缩放时的起始位置大100，则dismiss
  */
 
 import UIKit
@@ -25,12 +36,12 @@ final class PhotoZoomedViewController: UIViewController {
     var placeholderPhotoName: String?
     
     
-    lazy var scrollView: UIScrollView = {
+    lazy var scrollView: UIScrollView = { [weak self] in
         let scrollView = UIScrollView()
         if #available(iOS 11.0, *) {
             scrollView.contentInsetAdjustmentBehavior = .never
         } else {
-            // Fallback on earlier versions
+            automaticallyAdjustsScrollViewInsets = false 
         }
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
@@ -42,12 +53,17 @@ final class PhotoZoomedViewController: UIViewController {
     
     
     lazy var imageView: UIImageView = {
-        /// 若加载网络图片，在创建图片时，如果本地有缓存，则从本地取，本地没有，则使用默认图替代，待大图下载完成再重新赋值。 See Notes 👆
-        let image = UIImage(named: photoName)!
-        let imageView = UIImageView(image: image)
+        let imageView = UIImageView(image: initializedPhoto)
         imageView.isUserInteractionEnabled = true
         imageView.clipsToBounds = true
         return imageView
+    }()
+    
+    /// 显示时初始化时的photo
+    lazy var initializedPhoto: UIImage = {
+        /// 若加载网络图片，在创建图片时，如果本地有缓存，则从本地取，本地没有，则使用默认图替代，待大图下载完成再重新赋值。 See Notes 👆
+        
+        return UIImage(named: photoName)!
     }()
     
 
@@ -57,7 +73,7 @@ final class PhotoZoomedViewController: UIViewController {
     private var imageViewTrailingConstraint: NSLayoutConstraint!
     
     /// 占位图（或小图），可用来模拟加载网络图片。
-    init(photoIndex: Int, photoName: String, placeholderPhotoName: String?) {
+    init(photoIndex: Int, photoName: String, placeholderPhotoName: String? = nil) {
         self.photoIndex = photoIndex
         self.photoName = photoName
         self.placeholderPhotoName = placeholderPhotoName
@@ -90,15 +106,14 @@ final class PhotoZoomedViewController: UIViewController {
 //        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 //            self.imageView.image = UIImage(named: "temp")
 //            self.imageView.sizeToFit()
-//            self.updateMinZoomScale(forSize: self.view.bounds.size)
-////            self.updateConstraints(forSize: self.view.bounds.size)
+//            self.updateMinZoomScale(forSize: scrollView.bounds.size)
 //        }
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        updateMinZoomScale(forSize: view.bounds.size)
+        updateMinZoomScale(forSize: scrollView.bounds.size)
     }
     
     override var prefersStatusBarHidden: Bool {
@@ -113,7 +128,7 @@ final class PhotoZoomedViewController: UIViewController {
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -153,7 +168,29 @@ final class PhotoZoomedViewController: UIViewController {
         
         /// set up the init zoom scale
         scrollView.zoomScale = minScale
+        
+        updateConstraints(forSize: scrollView.bounds.size)
     }
+    
+    
+    /// 重新设置图片
+    private func resetImage(_ image: UIImage) {
+        /// 这里，由于直接对“imageView.sizeToFit()、updateMinZoomScale()”做UIView.animate()动画会出现看起来先放大再缩小的问题，造成不好的视觉效果，因此这里采取先保存动画前旧image前的frame，更新约束后再做动画。
+        let beforeFrame = currentImageInitFrame!
+        
+        self.imageView.image = image
+        self.imageView.sizeToFit()
+        self.updateMinZoomScale(forSize: self.scrollView.bounds.size)
+        
+        let afterFrame = currentImageInitFrame!
+        
+        self.imageView.frame = beforeFrame
+        
+        UIView.animate(withDuration: 0.25, delay: 0.0, options: [.curveEaseInOut], animations: {
+            self.imageView.frame = afterFrame
+        }, completion: nil)
+    }
+    
     
     // MARK: - Gestures
     private func addGestures() {
@@ -170,15 +207,9 @@ final class PhotoZoomedViewController: UIViewController {
         generalTapGesture.require(toFail: doubleTapGesture)
 
         
-        // Find and hook the scrollView's pan gesture, add a swipe down operation to it.
+        // Hook the scrollView's pan gesture, add a swipe down operation to it.
         // (I have tried to add a UISwipeGesture to scrollView, but swipeGesture will be blocked)
-        if let gestures = scrollView.gestureRecognizers {
-            for gesture in gestures {
-                if gesture is UIPanGestureRecognizer {
-                    gesture.addTarget(self, action: Selector.swipeDown)
-                }
-            }
-        }
+        scrollView.panGestureRecognizer.addTarget(self, action: Selector.swipeDown)
     }
     
     @objc func generalTap(gesture: UITapGestureRecognizer) {
@@ -196,17 +227,31 @@ final class PhotoZoomedViewController: UIViewController {
     }
     
     @objc func swipeDown(gesture: UIPanGestureRecognizer) {
-//        print(gesture.translation(in: scrollView).y)
-//        print(gesture.velocity(in: scrollView).y)
+     
+        print(gesture.translation(in: scrollView).y)
+        print(imageView.transform)
+        
         switch gesture.state {
         case .began:
             gesture.setTranslation(.zero, in: scrollView)
         case .ended:
             let offsetY = gesture.translation(in: scrollView).y
             let velocityY = gesture.velocity(in: scrollView).y
-            if offsetY > 100 && velocityY > 1000 {   // 偏移量达到100pt，且速度达到800pt/s，则dismiss
+         
+            if offsetY > 100 && velocityY > 1000 {  // 偏移量达到100pt，且速度达到800pt/s，则dismiss
+                self.dismiss(animated: true, completion: nil)
+                
+            } else if let initFrame = currentImageInitFrame,
+                fabs(imageView.frame.minY - initFrame.minY) < 10.0,     // 由于AutoLayout和frame的不同计算会带有小数点，直接允许10pt的误差吧
+                offsetY > 100
+            {
+                // 测试发现:
+                // 当缩放时，改变的是imageView的frame；
+                // 当拖动产生bounces效果时，改变的是imageView的transform，而frame是固定不变的 (因此在图片处于原位时可以加此判断)。
+                // 如果图片处于起始位置，且拖拽结束时手势的偏移量 比图片未缩放时的起始位置大100，则dismiss
                 self.dismiss(animated: true, completion: nil)
             }
+            
         default:
             break
         }
@@ -239,31 +284,49 @@ extension PhotoZoomedViewController: UIScrollViewDelegate {
     
     /// Called every time zoom in or out the scroll View, use this method to center the image, otherwise it will be pinned to the top of the scroll view.
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
-        updateConstraints(forSize: view.bounds.size)
+        updateConstraints(forSize: scrollView.bounds.size)
     }
 }
 
 // MARK: - 用于present/dismiss时图片的过渡效果
 extension PhotoZoomedViewController {
     
+    /// 当前image缩放前的起始frame (如果有大图，则是大图的起始frame，如果是小图，则是小图的起始frame)
+    var currentImageInitFrame: CGRect? {
+        guard let image = imageView.image else { return nil }
+        return initFrameOfImage(image, isTransition: false)
+    }
+    
     /// present完成时imageView的frame
-    var imageEndFrameOfPresent: CGRect? {
-        guard let image = UIImage(named: photoName) else { return nil }
+    var imageEndFrameOfPresent: CGRect {
+        return initFrameOfImage(initializedPhoto, isTransition: true)
+    }
+    
+    // 计算image未被缩放时的起始frame
+    func initFrameOfImage(_ image: UIImage, isTransition: Bool) -> CGRect {
         
-        // 由于使用AutoLayout做的，所以如果要添加点击present的图片过渡效果，得手动再算一遍图片的终点位置。
+        var topMargin: CGFloat = 0
+        if #available(iOS 11.0, *) {
+            topMargin = kSafeAreaTop
+        } else {
+            topMargin = 0   // 使得状态栏区域可见，适配iOS 11.0以下，不管是否isTransition，topMargin都为0
+        }
         
-        let viewWidth = view.bounds.width
-        let viewHeight = view.bounds.height - kSafeAreaBottom - 37.0  // UIPageControl 高37.0
+        // 由于要添加点击present的图片过渡效果，得手动再算一遍图片的终点位置。
+        // 如果 直接使用 view.bounds.widh/height，则在present前得出的宽高为屏幕宽高，在present完成后 又变成了去除安全边距、UIPageControl的宽高，会导致前后计算不一致，因此这里统一采用屏幕宽高来算
+        
+        let viewWidth = kScreenWidth
+        let viewHeight = kScreenHeight - topMargin - kSafeAreaBottom - 37.0  // UIPageControl 高37.0
         
         let centerX = viewWidth / 2
-        let centerY = viewHeight / 2
+        let centerY = viewHeight / 2 + (isTransition ? topMargin : 0) // 为了避免iPhone X上两只耳朵旁显示，scrollView在顶部的安全距离之下。因此这里计算完之后，要再加上kSafeAreaTop
         
         let widthScale = viewWidth / image.size.width
         let heightScale = viewHeight / image.size.height
         let minScale = min(widthScale, heightScale)
         
-        let width = image.size.width * minScale
-        let height = image.size.height * minScale
+        let width = min(image.size.width * minScale, image.size.width)      // 如果图片宽度比屏幕宽度 小，则选择屏幕宽度
+        let height = min(image.size.height * minScale, image.size.height)
         
         return CGRect(x: centerX - width / 2,
                       y: centerY - height / 2,
@@ -273,7 +336,17 @@ extension PhotoZoomedViewController {
     
     /// dismiss开始时imageView的frame
     var imageStartFrameOfDismiss: CGRect {
-        return imageView.frame
+        
+        var topMargin: CGFloat = 0
+        if #available(iOS 11.0, *) {
+            topMargin = kSafeAreaTop
+        } else {
+            topMargin = 0   // 使得状态栏区域可见，适配iOS 11.0以下，不管是否isTransition，topMargin都为0
+        }
+        
+        var frame = imageView.frame
+        frame.origin.y += topMargin       // 由于过渡时tempImageView是添加在view上的，坐标轴不同（真实的imageView对应scrollView，而tempImageView对应view），所以，要加上kSafeAreaTop
+        return frame
     }
 }
 
