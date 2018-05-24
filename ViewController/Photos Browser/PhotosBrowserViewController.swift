@@ -32,6 +32,9 @@ final class PhotosBrowserViewController: UIPageViewController {
 
     /// 从上一页面的view弹出的views数组，分别与其photoIndex对应
     var fromViewArray: [UIView]?
+    
+    /// 用于状态栏显示/隐藏 避免底层的viewController present时状态栏突变
+    var isViewDidAppear: Bool = false
 
     
     /// - Paramaters:
@@ -44,7 +47,9 @@ final class PhotosBrowserViewController: UIPageViewController {
         self.photos = photos
         self.presentIndex = presentIndex
         self.fromViewArray = fromViewArray
+        
         self.modalPresentationStyle = .overFullScreen
+        self.modalPresentationCapturesStatusBarAppearance = true
         self.transitioningDelegate = transitioning
     }
     
@@ -73,12 +78,19 @@ final class PhotosBrowserViewController: UIPageViewController {
         pageControl.currentPageIndicatorTintColor = .red
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        isViewDidAppear = true
+        setNeedsStatusBarAppearanceUpdate()
+    }
+    
     deinit {
         print("\(self) deinit")
     }
 
     override var prefersStatusBarHidden: Bool {
-        return true
+        return isViewDidAppear ? true : false
     }
     
     private func zoomedPhotoController(index: Int) -> PhotoZoomedViewController {

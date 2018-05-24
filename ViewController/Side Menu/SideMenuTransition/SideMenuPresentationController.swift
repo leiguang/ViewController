@@ -15,7 +15,7 @@ class SideMenuPresentationController: UIPresentationController {
     override init(presentedViewController: UIViewController, presenting presentingViewController: UIViewController?) {
         
         self.dimmingView = UIView()
-        self.dimmingView.backgroundColor = UIColor(white: 0, alpha: 0.3)
+        self.dimmingView.backgroundColor = UIColor(white: 0, alpha: 0.4)
         self.dimmingView.alpha = 0.0
         
         super.init(presentedViewController: presentedViewController, presenting: presentingViewController)

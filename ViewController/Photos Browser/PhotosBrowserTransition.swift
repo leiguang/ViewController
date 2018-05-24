@@ -52,10 +52,11 @@ extension PhotosBrowserTransition: UIViewControllerAnimatedTransitioning {
                 let startRect = photoBrowserVC.imageStartFrameOfPresent,
                 let imageView = photoBrowserVC.currentImageView
             {
+                imageView.isHidden = true
+                
                 tempImageView = UIImageView(image: image)
                 tempImageView?.frame = startRect
                 toView.addSubview(tempImageView!)
-                imageView.isHidden = true
             }
             toView.alpha = 0
             containerView.addSubview(toView)
@@ -66,10 +67,11 @@ extension PhotosBrowserTransition: UIViewControllerAnimatedTransitioning {
                 let image = imageView.image,
                 let startRect = photoBrowserVC.imageStartFrameOfDismiss
             {
+                imageView.isHidden = true
+                
                 tempImageView = UIImageView(image: image)
                 tempImageView?.frame = startRect
                 fromView.addSubview(tempImageView!)
-                imageView.isHidden = true
             }
         }
         
@@ -102,9 +104,10 @@ extension PhotosBrowserTransition: UIViewControllerAnimatedTransitioning {
                 if let photoBrowserVC = toVC as? PhotosBrowserViewController,
                     let imageView = photoBrowserVC.currentImageView
                 {
-                    imageView.isHidden = false
                     self.tempImageView?.removeFromSuperview()
                     self.tempImageView = nil
+                    
+                    imageView.isHidden = false
                 }
             }
             

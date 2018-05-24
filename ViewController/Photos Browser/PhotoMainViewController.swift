@@ -13,6 +13,9 @@ class PhotoMainViewController: UICollectionViewController {
     private let thumbnailSize: CGFloat = 70.0
     private let sectionInsets = UIEdgeInsets(top: 10.0, left: 5.0, bottom: 10.0, right: 5.0)
     private let photos = ["photo0", "photo1", "photo2", "photo3", "photo4", "photo5", "photo6", "photo7"]
+    
+    
+    
 }
 
 // MARK: - UICollectionViewDataSource
